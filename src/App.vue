@@ -14,10 +14,10 @@ v-app
 					v-list-tile-title Flip
 
 			a(href="https://uxdesign.cc/introducing-mercury-os-f4de45a04289") mercury
-	v-app-bar( app hide-on-scroll bottom clipped-left)
+	v-app-bar( app bottom hide-on-scroll clipped-left).transp
 		v-app-bar-nav-icon(@click="leftDrawer = !leftDrawer")
-		v-toolbar-title.headline.text-uppercase
-			span.font-weight-bold DV
+		v-toolbar-title.headline
+			span.font-weight-bold .dv
 			span( class="font-weight-light" ) 2020
 		v-spacer
 		svg-transition(ref="transition" trigger="click")
@@ -58,11 +58,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .bg {
-	background: #ccc;
+	background: #caced3;
+	background: -moz-linear-gradient(top,  #caced3 0%, #cbbfc1 50%, #a2acb5 100%);
+	background: -webkit-linear-gradient(top,  #caced3 0%,#cbbfc1 50%,#a2acb5 100%);
+	background: linear-gradient(to bottom,  #caced3 0%,#cbbfc1 50%,#a2acb5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#caced3', endColorstr='#a2acb5',GradientType=0 );
+	background-attachment: fixed;
 }
 svg {
 	cursor: pointer;
+}
+.theme--light.v-sheet.transp {
+background: linear-gradient(180deg, #CED7E3 0%, #B5C6BC 100%);
 }
 
 </style>

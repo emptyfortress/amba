@@ -7,9 +7,11 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 import '@/assets/css/support.css'
 import SvgTransition from 'vue-svg-transition'
+import KsVueFullpage from 'ks-vue-fullpage'
 
 Vue.config.productionTip = false
 Vue.use(SvgTransition)
+Vue.use(KsVueFullpage)
 
 new Vue({
 	router,
