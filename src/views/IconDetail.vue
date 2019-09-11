@@ -1,21 +1,21 @@
 <template lang="pug">
 Flipped( :flipId="flipId" @on-complete="handleComplete" )
-	div( class="card-detail" )
+	.card-detail.pa-5
 		Flipped( :inverseFlipId="flipId" )
 			div( class="flex h-full" )
 				div( class="w-1/2 border-r" )
 					div( class="p-6" )
 						router-link( class="text-xs text-green uppercase tracking-wide inline-block mb-2 no-underline" to="/test" ) Back
-						<h1 class="text-xl mb-4 font-semibold" ) {{ iconSet.label }}
-						p( class="flow text-grey" ) Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto beatae iure omnis magnam perspiciatis voluptatibus, sunt vero quam debitis vitae consectetur voluptas molestias inventore reprehenderit quae aliquam veniam ad eius.
-						p( class="flow text-grey my-3" ) Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto beatae iure omnis magnam perspiciatis voluptatibus, sunt vero quam debitis vitae consectetur voluptas molestias inventore reprehenderit quae aliquam veniam ad eius.
-						p( class="flow text-grey my-3" ) Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto beatae iure omnis magnam perspiciatis voluptatibus, sunt vero quam debitis vitae consectetur voluptas molestias inventore reprehenderit quae aliquam veniam ad eius.
-				div( class="w-1/2 p-6 overflow-y-auto" )
-					div( class="icon-grid" )
+						h1.mb-4 {{ iconSet.label }}
+						p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto beatae iure omnis magnam perspiciatis voluptatibus, sunt vero quam debitis vitae consectetur voluptas molestias inventore reprehenderit quae aliquam veniam ad eius.
+						p.my-3 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto beatae iure omnis magnam perspiciatis voluptatibus, sunt vero quam debitis vitae consectetur voluptas molestias inventore reprehenderit quae aliquam veniam ad eius.
+						p.my-3 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto beatae iure omnis magnam perspiciatis voluptatibus, sunt vero quam debitis vitae consectetur voluptas molestias inventore reprehenderit quae aliquam veniam ad eius.
+				.pa-5
+					.icon-grid
 						template( v-for="icon in fullIconSet" )
 							Flipped( v-if="icon.flipped" :flipId="`${iconSet.slug}-${icon.key}`" :key="`${iconSet.slug}-${icon.key}`" )
-								div( class="icon flipped bg-green" )
-							div( v-else class="icon bg-grey" :key="`${iconSet.slug}-${icon.key}`" )
+								.icon.flipped.bg-green
+							.icon.bg-grey( v-else :key="`${iconSet.slug}-${icon.key}`" )
 
 </template>
 
@@ -85,3 +85,46 @@ export default {
 }
 
 </script>
+
+<style scoped lang="scss">
+
+.header {
+	min-height: 77px;
+}
+.icon {
+	width: 64px;
+	height: 64px;
+}
+.icon:not(.flipped) {
+	opacity: 0;
+}
+.card-detail {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: white;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+.icon-grid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-auto-rows: 64px;
+	grid-gap: 24px;
+	grid-auto-flow: dense;
+}
+.flex {
+	/* display: flex; */
+}
+.h-full {
+	height: 100%;
+}
+.bg-green {
+	background: green;
+}
+.bg-grey {
+	background: #ccc;
+}
+</style>
