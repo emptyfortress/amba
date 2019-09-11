@@ -1,6 +1,6 @@
 <template lang="pug">
 Flipped( :flipId="flipId" @on-complete="handleComplete" )
-	.card-detail.pa-5
+	.card-detail.pa-5.mt-5
 		Flipped( :inverseFlipId="flipId" )
 			div( class="flex h-full" )
 				div( class="w-1/2 border-r" )

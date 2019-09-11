@@ -1,12 +1,36 @@
 <template lang="pug">
 div.pa-5
 	h2 laksjdl
-	svg-transition(:size="size" ref="transition" trigger="click")
-		svg(slot="initial")
-			use(href="#one")
-		svg
-			use(href="#two")
-	hid
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
+	h2 laksjdl
 
 </template>
 
