@@ -4,17 +4,7 @@ v-app
 		v-model="leftDrawer" app temporary dark floating hide-overlay
 		width="400"
 		src="/globe-bg.jpg")
-		v-list
-			v-list-tile(router to="/")
-				v-list-tile-content
-					v-list-tile-title Home
-
-			v-list-tile(router to="/flip")
-				v-list-tile-content
-					v-list-tile-title Flip
-
-			a(href="https://uxdesign.cc/introducing-mercury-os-f4de45a04289") mercury
-	v-app-bar( app bottom hide-on-scroll clipped-left).transp
+	v-app-bar( app bottom clipped-left).transp
 		v-app-bar-nav-icon(@click="leftDrawer = !leftDrawer")
 		v-toolbar-title.headline
 			span.font-weight-bold .dv
