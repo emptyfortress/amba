@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Test from './views/Test.vue'
+import IconDetail from './views/IconDetail.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
 			path: '/test',
 			name: 'test',
 			component: Test
+		},
+		{
+			path: '/icons/:set',
+			name: 'detail',
+			component: IconDetail
 		},
 		{
 			path: '/about',
