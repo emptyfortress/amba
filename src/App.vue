@@ -16,7 +16,7 @@ v-app
 			svg
 				use(href="#two")
 		v-spacer
-		v-btn( text href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" )
+		v-btn( text href="https://docsvision.com" target="_blank" )
 			span( class="mr-2" ) WhitePaper
 			v-icon mdi-open-in-new
 	v-content.bg
