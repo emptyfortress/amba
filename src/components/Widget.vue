@@ -45,7 +45,7 @@ export default {
 		font-weight: 200;
 		font-size: 2.5rem;
 		position: absolute;
-		top: 1rem;
+		top: -3rem;
 		right: 1rem;
 	}
 	&.big {
