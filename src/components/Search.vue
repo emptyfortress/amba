@@ -36,7 +36,8 @@ export default {
 				return 'Задания'
 			case 'i':
 				return 'Исполнители'
-			default:
+			case 's':
+				return 'Срок'
 			}
 		}
 	}
