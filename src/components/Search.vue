@@ -1,32 +1,43 @@
 <template lang="pug">
 .search
 	.group
-		v-btn(text color="$grey") История
-		v-btn(text color="$grey") Я - автор
+		v-btn(text color="grey") Команды
+		//- v-btn(text color="$grey") Я - автор
 	.rel
-		input(v-model="search" placeholder="Что найти?" autofocus).big
+		input-tag(v-model="tags"  placeholder="Что искать?" :add-tag-on-keys="keys" :before-adding="(tag) => norm(tag)")
 		i.icon-search
-	input-tag(v-model="tags")
 
 </template>
 
 <script>
 import InputTag from 'vue-input-tag'
+import '@/assets/css/tags.scss'
 
 export default {
 	data () {
 		return {
 			search: '',
-			term: false,
-			tags: ''
+			term: '',
+			tags: [],
+			keys: [188, 9]
 		}
 	},
 	components: {
 		InputTag
 	},
-	watch: {
-		search: function (value) {
-			// value.length > 2 ? this.term = true
+	methods: {
+		norm (e) {
+			switch (e) {
+			case 'd':
+				return 'Документы'
+			case 'a':
+				return 'Атрибуты'
+			case 'z':
+				return 'Задания'
+			case 'i':
+				return 'Исполнители'
+			default:
+			}
 		}
 	}
 }
@@ -63,5 +74,6 @@ export default {
 .rel {
 	position: relative;
 	margin-top: 30%;
+	border-bottom: 1px dotted black;
 }
 </style>
