@@ -4,7 +4,7 @@ v-app
 		v-model="leftDrawer" app temporary dark floating hide-overlay
 		width="400"
 		src="/globe-bg.jpg")
-	v-app-bar( app bottom clipped-left).transp
+	v-app-bar(app bottom clipped-left).transp
 		v-app-bar-nav-icon(@click="leftDrawer = !leftDrawer")
 		v-toolbar-title.headline
 			span.font-weight-bold .dv
@@ -50,6 +50,7 @@ export default {
 <style scoped lang="scss">
 
 .bg {
+	padding: 0 !important;
 	background: #caced3;
 	background: -moz-linear-gradient(top,  #caced3 0%, #cbbfc1 50%, #a2acb5 100%);
 	background: -webkit-linear-gradient(top,  #caced3 0%,#cbbfc1 50%,#a2acb5 100%);

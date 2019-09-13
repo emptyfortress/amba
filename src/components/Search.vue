@@ -4,22 +4,29 @@
 		v-btn(text color="$grey") История
 		v-btn(text color="$grey") Я - автор
 	.rel
-		input(v-model="search" placeholder="Что найти?" ).big
+		input(v-model="search" placeholder="Что найти?" autofocus).big
 		i.icon-search
+	input-tag(v-model="tags")
 
 </template>
 
 <script>
+import InputTag from 'vue-input-tag'
 
 export default {
 	data () {
 		return {
-			search: ''
+			search: '',
+			term: false,
+			tags: ''
 		}
+	},
+	components: {
+		InputTag
 	},
 	watch: {
 		search: function (value) {
-			value.length > 2 ? console.log('yes') : console.log('no')
+			// value.length > 2 ? this.term = true
 		}
 	}
 }
