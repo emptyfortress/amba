@@ -2,7 +2,6 @@
 .search
 	.group
 		v-btn(text color="grey") Команды
-		//- v-btn(text color="$grey") Я - автор
 	.rel
 		input-tag(v-model="tags"  placeholder="Что искать?" :add-tag-on-keys="keys" :before-adding="(tag) => norm(tag)")
 		i.icon-search
@@ -17,7 +16,7 @@ export default {
 	data () {
 		return {
 			search: '',
-			term: '',
+			term: false,
 			tags: [],
 			keys: [188, 9]
 		}

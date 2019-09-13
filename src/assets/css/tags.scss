@@ -3,7 +3,9 @@
 	border: none;
 	padding-bottom: none;
 	align-items: center;
-	
+	.input-tag:nth-last-of-type(1) {
+		margin-right: .7rem;
+	}
 }
 .vue-input-tag-wrapper .input-tag {
 	font-size: 1.0rem;
