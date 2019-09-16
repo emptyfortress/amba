@@ -9,7 +9,7 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 							Flipped(:flipId="`count-${index}`")
 								.count {{ item.items }}
 							Flipped(:flipId="`chart-${index}`")
-								v-sparkline(:value="item.history" auto-draw padding="20")
+								v-sparkline(:value="item.history" auto-draw padding="20" line-width="1" :gradient="grad")
 							Flipped(:flipId="`hd-${index}`")
 								.hd {{ item.name }}
 		div(v-else)
@@ -23,6 +23,8 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 								v-sparkline(:value="item.history" auto-draw).chart
 							Flipped(:flipId="`hd-${index}`")
 								.hd {{ item.name }}
+							.allbox
+								.grid(v-for="(num,index) in Array(15)" :key="num" :style="{backgroundColor: `rgba(0,0,0, ${index/40})`}")
 
 </template>
 
@@ -34,8 +36,8 @@ import Widget from '@/components/Widget'
 export default {
 	data () {
 		return {
-			one: 'one',
 			focused: null,
+			grad: ['red', '#1976d2'],
 			list: [
 				 {
 					name: 'Новые',
@@ -104,7 +106,7 @@ export default {
 		}
 		&.expanded {
 			width: 900px;
-			height: 700px;
+			height: 699px;
 			.count {
 				right: 10px;
 				font-size: 2rem;
@@ -118,20 +120,21 @@ export default {
 		}
 	}
 }
+.allbox {
+	display: flex;
+	flex-flow: row wrap;
+	height: 699px;
+	.grid {
+		width: 20%;
+		height: 33%,3;
+		/* opacity: 0; */
+	}
+}
 .chart {
 	width: 100px;
 	position: absolute;
 	top: -44px;
 	right: 71px;
 }
-/* .mycontent { */
-/* 		cursor: pointer; */
-/* 		width: 300px; */
-/* 		height: 150px; */
-/* 		background: white; */
-/* 	/\* width: 100px; *\/ */
-/* 	/\* height: 100px; *\/ */
-/* 	/\* background: white; *\/ */
-/* } */
 
 </style>
