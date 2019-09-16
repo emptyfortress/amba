@@ -16,6 +16,7 @@ import Widget from '@/components/Widget'
 export default {
 	data () {
 		return {
+			one: 'one',
 			focused: null,
 			list: [
 				 {

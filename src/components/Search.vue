@@ -29,15 +29,36 @@ export default {
 			switch (e) {
 			case 'd':
 				return 'Документы'
+			case 'D':
+				this.minus()
+				return 'Документы'
 			case 'a':
+				return 'Атрибуты'
+			case 'A':
+				this.minus()
 				return 'Атрибуты'
 			case 'z':
 				return 'Задания'
+			case 'Z':
+				this.minus()
+				return 'Задания'
 			case 'i':
+				return 'Исполнители'
+			case 'I':
+				this.minus()
 				return 'Исполнители'
 			case 's':
 				return 'Срок'
+			case 'S':
+				this.minus()
+				return 'Срок'
 			}
+		},
+		minus () {
+			setTimeout(function () {
+				let ttt = document.querySelector('.input-tag:nth-last-child(-n+2)')
+				ttt.className += ' minus'
+			}, 10)
 		}
 	}
 }

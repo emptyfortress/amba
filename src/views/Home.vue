@@ -1,10 +1,10 @@
 <template lang="pug">
-		ksvuefp( :options="options" :sections="sections" )
-			ksvuefp-section( v-for="(s,index) in sections" :section="s" :key="s.id" :section-index="index" :class="s.cl" )
-				Today( v-if="index === 0" )
-				Search(v-if="index === 1")
-				h2( v-if="index === 2" ) {{ s.id }} {{ index }}
-				h2( v-if="index === 3" ) {{ s.id }}
+ksvuefp( :options="options" :sections="sections" )
+	ksvuefp-section( v-for="(s,index) in sections" :section="s" :key="s.id" :section-index="index" :class="s.cl" )
+		Today( v-if="index === 0" )
+		Search(v-if="index === 1")
+		h2( v-if="index === 2" ) {{ s.id }} {{ index }}
+		h2( v-if="index === 3" ) {{ s.id }}
 
 </template>
 
