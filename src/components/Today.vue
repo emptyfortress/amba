@@ -24,7 +24,8 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 							Flipped(:flipId="`hd-${index}`")
 								.hd {{ item.name }}
 							.allbox
-								.grid(v-for="(num,index) in Array(15)" :key="num" :style="{backgroundColor: `rgba(0,0,0, ${index/40})`}")
+								.grid(v-for="(num,index) in Array(item.items)" :key="num" :style="{backgroundColor: `rgba(0,0,0, ${index/40})`}")
+									.doc
 
 </template>
 
@@ -71,7 +72,7 @@ export default {
 			anime({
 				targets: squares,
 				opacity: [0, 1],
-				delay: anime.stagger(40)
+				delay: anime.stagger(60)
 			})
 		}
 	}
@@ -110,6 +111,7 @@ export default {
 		&.expanded {
 			height: calc(100vh - 180px);
 			width: 50vw;
+			/* background: #ffffffaa; */
 			.count {
 				right: 10px;
 				font-size: 2rem;
@@ -120,17 +122,25 @@ export default {
 				left: 0;
 				font-size: 2rem;
 			}
+			.allbox {
+				display: flex;
+				flex-flow: row wrap;
+				height: calc(100vh - 180px);
+				justify-content: flex-start;
+				overflow: hidden;
+				/* align-items: center; */
+				.grid {
+					width: 20%;
+					height: 33.3%;
+					.doc {
+						width: 30px;
+						height: 30px;
+						background: #ccc;
+						border-radius: 15px;
+					}
+				}
+			}
 		}
-	}
-}
-.allbox {
-	display: flex;
-	flex-flow: row wrap;
-	height: 699px;
-	.grid {
-		width: 20%;
-		height: 33%,3;
-		/* opacity: 0; */
 	}
 }
 .chart {
