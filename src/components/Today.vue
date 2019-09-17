@@ -13,7 +13,7 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 							Flipped(:flipId="`hd-${index}`")
 								.hd {{ item.name }}
 		div(v-else)
-			Flipped(:flipId="`item-${index}`" v-if="index === focused")
+			Flipped(:flipId="`item-${index}`" v-if="index === focused" @on-start="handleStart")
 				.box.expanded(@click="toggle(null)")
 					Flipped( :inverseFlipId="`item-${index}`" )
 						div
@@ -30,7 +30,7 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 
 <script>
 import { Flipper, Flipped } from 'vue-flip-toolkit'
-// import anime from 'animejs'
+import anime from 'animejs'
 import Widget from '@/components/Widget'
 
 export default {
@@ -65,6 +65,14 @@ export default {
 	methods: {
 		toggle (e) {
 			this.focused = e
+		},
+		handleStart ({ el, id }) {
+			const squares = el.querySelectorAll('.grid')
+			anime({
+				targets: squares,
+				opacity: [0, 1],
+				delay: anime.stagger(40)
+			})
 		}
 	}
 }
@@ -76,11 +84,6 @@ export default {
 .today {
 	height: 100%;
 	background: url('../assets/img/today.png') no-repeat left 90%;
-}
-.look {
-	height: 600px;
-	width: 800px;
-	background: white;
 }
 
 .flexi {
@@ -94,7 +97,7 @@ export default {
 		position: relative;
 		.count {
 			position: absolute;
-			top: -60px;
+			top: -55px;
 			right: 0;
 			font-size: 3rem;
 			font-weight: 300;
@@ -105,8 +108,8 @@ export default {
 
 		}
 		&.expanded {
-			width: 900px;
-			height: 699px;
+			height: calc(100vh - 180px);
+			width: 50vw;
 			.count {
 				right: 10px;
 				font-size: 2rem;
