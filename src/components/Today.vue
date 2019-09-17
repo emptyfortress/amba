@@ -1,31 +1,31 @@
 <template lang="pug">
 Flipper(:flipKey="focused" spring="stiff").today.flexi
-	div(v-for="( item, index ) in list" :key="index" )
+	div(v-for="( folder, index ) in list" :key="index" )
 		div(v-if="focused === null")
-			Flipped(:flipId="`item-${index}`")
+			Flipped(:flipId="`folder-${index}`")
 				.box(@click="toggle(index)")
-					Flipped( :inverseFlipId="`item-${index}`" )
+					Flipped( :inverseFlipId="`folder-${index}`" )
 						div
 							Flipped(:flipId="`count-${index}`")
-								.count {{ item.items }}
+								.count {{ folder.total }}
 							Flipped(:flipId="`chart-${index}`")
-								v-sparkline(:value="item.history" auto-draw padding="20" line-width="1" :gradient="grad")
+								v-sparkline(:value="folder.history" auto-draw padding="20" line-width="1" :gradient="grad")
 							Flipped(:flipId="`hd-${index}`")
-								.hd {{ item.name }}
+								.hd {{ folder.name }}
 		div(v-else)
-			Flipped(:flipId="`item-${index}`" v-if="index === focused" @on-start="handleStart")
+			Flipped(:flipId="`folder-${index}`" v-if="index === focused" @on-start="handleStart")
 				.box.expanded(@click="toggle(null)")
-					Flipped( :inverseFlipId="`item-${index}`" )
+					Flipped( :inverseFlipId="`folder-${index}`" )
 						div
 							Flipped(:flipId="`count-${index}`")
-								.count {{ item.items }}
+								.count {{ folder.total }}
 							Flipped(:flipId="`chart-${index}`")
-								v-sparkline(:value="item.history" auto-draw).chart
+								v-sparkline(:value="folder.history" auto-draw).chart
 							Flipped(:flipId="`hd-${index}`")
-								.hd {{ item.name }}
+								.hd {{ folder.name }}
 							.allbox
-								.grid(v-for="(num,index) in Array(item.items)" :key="num" :style="{backgroundColor: `rgba(0,0,0, ${index/40})`}")
-									.doc
+								.grid(v-for="(num,index) in Array(folder.total)" :key="num" )
+									Doc(:item="index")
 
 </template>
 
@@ -33,6 +33,7 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 import { Flipper, Flipped } from 'vue-flip-toolkit'
 import anime from 'animejs'
 import Widget from '@/components/Widget'
+import Doc from '@/components/Doc'
 
 export default {
 	data () {
@@ -42,17 +43,17 @@ export default {
 			list: [
 				 {
 					name: 'Новые',
-					items: 14,
+					total: 14,
 					history: [59, 10, 40, 35, 58, 52]
 				},
 				{
 					name: 'Приближается срок',
-					items: 7,
+					total: 7,
 					history: [31, 7, 99, 72, 0, 8]
 				},
 				{
 					name: 'Важное',
-					items: 5,
+					total: 5,
 					history: [90, 2, 6, 10, 8, 43]
 				}
 			]
@@ -61,7 +62,8 @@ export default {
 	components: {
 		Widget,
 		Flipper,
-		Flipped
+		Flipped,
+		Doc
 	},
 	methods: {
 		toggle (e) {
@@ -72,7 +74,7 @@ export default {
 			anime({
 				targets: squares,
 				opacity: [0, 1],
-				delay: anime.stagger(60)
+				delay: anime.stagger(60, { start: 400 })
 			})
 		}
 	}
@@ -98,7 +100,7 @@ export default {
 		position: relative;
 		.count {
 			position: absolute;
-			top: -55px;
+			top: -60px;
 			right: 0;
 			font-size: 3rem;
 			font-weight: 300;
@@ -132,12 +134,7 @@ export default {
 				.grid {
 					width: 20%;
 					height: 33.3%;
-					.doc {
-						width: 30px;
-						height: 30px;
-						background: #ccc;
-						border-radius: 15px;
-					}
+					opacity: 0;
 				}
 			}
 		}
