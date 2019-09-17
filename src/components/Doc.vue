@@ -1,10 +1,9 @@
 <template lang="pug">
 .doc
 	.user
-		v-avatar( size="48" )
-			img( v-if="img" src="@/assets/img/users/user1.svg" alt="avatar" )
+		v-avatar( size="42" ).bg
+			img( v-if="img" :src="source(item)" alt="avatar" )
 			span( v-else ) VJ
-	h2 {{ i }}
 
 </template>
 
@@ -19,7 +18,7 @@ export default {
 	},
 	methods: {
 		source (e) {
-			return '@/assets/img/users/user' + this.e + '.svg'
+			return require('@/assets/img/users/user' + e + '.svg')
 		}
 	}
 }
@@ -27,7 +26,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.doc {
+	border: 1px solid black;
+	height: 100%;
+	background: white;
+}
 .user {
+	.bg {
+		background: #ccc;
+	}
 
 }
 

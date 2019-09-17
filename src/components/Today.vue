@@ -113,9 +113,10 @@ export default {
 		&.expanded {
 			height: calc(100vh - 180px);
 			width: 50vw;
-			/* background: #ffffffaa; */
+			background: #ffffff44;
 			.count {
 				right: 10px;
+				top: -54px;
 				font-size: 2rem;
 			}
 			.hd {
