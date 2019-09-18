@@ -14,7 +14,7 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 								.hd {{ folder.name }}
 		div(v-else)
 			Flipped(:flipId="`folder-${index}`" v-if="index === focused" @on-start="handleStart")
-				.box.expanded(@click="toggle(null)")
+				.box.expanded(v-click-outside="close")
 					Flipped( :inverseFlipId="`folder-${index}`" )
 						div
 							Flipped(:flipId="`count-${index}`")
@@ -26,12 +26,20 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 							.allbox
 								.grid(v-for="(num,index) in Array(folder.total)" :key="num" )
 									Doc(:item="index")
+					v-hover
+						.button(slot-scop="{hover}" :class="`elevation-${hover ? 5 : 0}`")
+							svg-transition(ref="transition" trigger="click")
+								svg(slot="initial")
+									use(href="#unread")
+								svg
+									use(href="#read")
 
 </template>
 
 <script>
 import { Flipper, Flipped } from 'vue-flip-toolkit'
 import anime from 'animejs'
+import vClickOutside from 'v-click-outside'
 import Widget from '@/components/Widget'
 import Doc from '@/components/Doc'
 
@@ -66,6 +74,9 @@ export default {
 		Doc
 	},
 	methods: {
+		close () {
+			this.focused = null
+		},
 		toggle (e) {
 			this.focused = e
 		},
@@ -77,6 +88,9 @@ export default {
 				delay: anime.stagger(60, { start: 400 })
 			})
 		}
+	},
+	directives: {
+		clickOutside: vClickOutside.directive
 	}
 }
 
@@ -98,6 +112,11 @@ export default {
 		width: 300px;
 		background: white;
 		position: relative;
+		cursor: pointer;
+		&:hover {
+			box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12);
+
+		}
 		.count {
 			position: absolute;
 			top: -60px;
@@ -114,6 +133,9 @@ export default {
 			/* height: calc(100vh - 180px); */
 			width: 50vw;
 			background: #ffffff44;
+			&:hover {
+				box-shadow: none;
+			}
 			.count {
 				right: 10px;
 				top: -54px;
@@ -126,23 +148,30 @@ export default {
 				font-size: 2rem;
 			}
 			.allbox {
-				/* height: 100%; */
 				display: grid;
 				grid-template-columns: repeat(5, 1fr);
 				grid-auto-rows: 200px;
 				grid-gap: 4px;
-				/* background: red; */
-				/* justify-items: start; */
-				/* align-items: start; */
-				/* display: flex; */
-				/* flex-flow: row wrap; */
-				/* height: calc(100vh - 180px); */
-				/* justify-content: flex-start; */
 				overflow: hidden;
-				/* align-items: center; */
-				/* .grid { */
-				/* 	background: #ccc; */
-				/* } */
+			}
+			.button {
+				position: absolute;
+				top: 0;
+				right: -70px;
+				width: 54px;
+				height: 54px;
+				border-radius: 32px;
+				display: flex;
+				justify-content: center;
+				cursor: pointer;
+				transition: all .3s ease;
+				&:hover {
+					background: white;
+				}
+				svg {
+					display: block;
+					margin: auto;
+				}
 			}
 		}
 	}
