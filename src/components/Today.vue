@@ -111,7 +111,7 @@ export default {
 
 		}
 		&.expanded {
-			height: calc(100vh - 180px);
+			/* height: calc(100vh - 180px); */
 			width: 50vw;
 			background: #ffffff44;
 			.count {
@@ -126,17 +126,23 @@ export default {
 				font-size: 2rem;
 			}
 			.allbox {
-				display: flex;
-				flex-flow: row wrap;
-				height: calc(100vh - 180px);
-				justify-content: flex-start;
+				/* height: 100%; */
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				grid-auto-rows: 200px;
+				grid-gap: 4px;
+				/* background: red; */
+				/* justify-items: start; */
+				/* align-items: start; */
+				/* display: flex; */
+				/* flex-flow: row wrap; */
+				/* height: calc(100vh - 180px); */
+				/* justify-content: flex-start; */
 				overflow: hidden;
 				/* align-items: center; */
-				.grid {
-					width: 20%;
-					height: 33.3%;
-					opacity: 0;
-				}
+				/* .grid { */
+				/* 	background: #ccc; */
+				/* } */
 			}
 		}
 	}

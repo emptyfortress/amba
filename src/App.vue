@@ -3,7 +3,8 @@ v-app
 	v-navigation-drawer(
 		v-model="leftDrawer" app temporary dark floating hide-overlay
 		width="400"
-		src="/globe-bg.jpg")
+		src="/green.webp")
+		//- src="/globe-bg.jpg")
 	v-app-bar(app bottom clipped-left).transp
 		v-app-bar-nav-icon(@click="leftDrawer = !leftDrawer")
 		v-toolbar-title.headline

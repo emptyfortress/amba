@@ -28,7 +28,7 @@ export default {
 <style scoped lang="scss">
 
 .doc {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	height: 100%;
 	background: white;
 }
