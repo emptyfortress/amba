@@ -26,13 +26,12 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 							.allbox
 								.grid(v-for="(num,index) in Array(folder.total)" :key="num" )
 									Doc(:item="index")
-					v-hover
-						.button(slot-scop="{hover}" :class="`elevation-${hover ? 5 : 0}`")
-							svg-transition(ref="transition" trigger="click")
-								svg(slot="initial")
-									use(href="#unread")
-								svg
-									use(href="#read")
+					.button
+						svg-transition(ref="transition" trigger="click")
+							svg(slot="initial")
+								use(href="#unread")
+							svg
+								use(href="#read")
 
 </template>
 
@@ -160,18 +159,10 @@ export default {
 				right: -70px;
 				width: 54px;
 				height: 54px;
-				border-radius: 32px;
 				display: flex;
 				justify-content: center;
 				cursor: pointer;
 				transition: all .3s ease;
-				&:hover {
-					background: white;
-				}
-				svg {
-					display: block;
-					margin: auto;
-				}
 			}
 		}
 	}

@@ -3,7 +3,7 @@
 	.group
 		v-btn(text color="grey") Команды
 	.rel
-		input-tag(v-model="tags"  placeholder="Что искать?" :add-tag-on-keys="keys" :before-adding="(tag) => norm(tag)")
+		input-tag(v-model="tags"  placeholder="Что искать?" :add-tag-on-keys="keys" :before-adding="(tag) => norm(tag)").big
 		i.icon-search
 
 </template>
@@ -83,12 +83,19 @@ export default {
 	height: 48px;
 	width: 100%;
 	font-size: 3.0rem;
-	border-bottom: 1px dotted black;
-	&:focus {
-		border-bottom: 1px solid black;
-		outline: none;
-	}
+	background: transparent;
+	outline: none;
+	border: none !important;
 }
+/* .vue-input-tag-wrapper { */
+/* 	.new-tag { */
+/* 		height: 48px; */
+/* 		width: 100%; */
+/* 		font-size: 3.0rem; */
+/* 		background: transparent; */
+/* 		outline: none; */
+/* 	} */
+/* } */
 .group {
 	padding-top: 1rem;
 }
