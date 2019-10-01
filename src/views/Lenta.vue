@@ -11,7 +11,7 @@
 	v-row( justify="space-around" )
 		v-col
 			v-sheet.trans
-				v-chip-group( multiple active-class="primary--text" show-arrows)
+				v-chip-group( mandatory show-arrows active-class="act")
 					v-chip( v-for="tag in tags" :key="tag" ) {{ tag }}
 
 </template>
@@ -21,17 +21,17 @@
 export default {
 	data () {
 		return {
-			type: false,
+			type: true,
 			tags: [
-				'Work',
-				'Home Improvement',
-				'Vacation',
-				'Food',
-				'Drawers',
-				'Shopping',
-				'Art',
-				'Tech',
-				'Creative Writing'
+				'Все',
+				'На исполнение',
+				'На согласование',
+				'На ознакомление',
+				'Мои согласования',
+				'Мои подписания',
+				'Мои поручения',
+				'Я - контролер',
+				'Делегировано'
 			]
 		}
 	},
@@ -72,6 +72,10 @@ export default {
 }
 .trans {
 	background: transparent;
+}
+.v-chip-group .v-chip--active {
+	background: #1976d2;
+	color: white !important;
 }
 
 </style>
