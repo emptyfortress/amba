@@ -1,0 +1,77 @@
+<template lang="pug">
+.lenta
+	.logo
+		span.font-weight-bold .dv
+		span( class="font-weight-light" ) 2020
+	.switch
+		span(@click="toggle").all Все
+		v-switch(v-model="type" flat label="Новые" color="primary").mx-3
+	.search
+		v-text-field(label="Найти")
+	v-row( justify="space-around" )
+		v-col
+			v-sheet.trans
+				v-chip-group( multiple active-class="primary--text" show-arrows)
+					v-chip( v-for="tag in tags" :key="tag" ) {{ tag }}
+
+</template>
+
+<script>
+
+export default {
+	data () {
+		return {
+			type: false,
+			tags: [
+				'Work',
+				'Home Improvement',
+				'Vacation',
+				'Food',
+				'Drawers',
+				'Shopping',
+				'Art',
+				'Tech',
+				'Creative Writing'
+			]
+		}
+	},
+	methods: {
+		toggle () {
+			this.type = !this.type
+		}
+	}
+}
+
+</script>
+
+<style scoped lang="scss">
+.lenta {
+	padding: .5rem 1rem;
+	position: relative;
+	height: 100vh;
+}
+.logo {
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+}
+.switch {
+	font-size: 1.0rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.all {
+	color: rgba(0,0,0,0.54);
+	cursor: pointer;
+	margin-bottom: .5rem;
+}
+.v-text-field {
+	margin-top: 0;
+	padding-top: 0;
+}
+.trans {
+	background: transparent;
+}
+
+</style>

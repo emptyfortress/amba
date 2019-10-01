@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Test from './views/Test.vue'
+import Lenta from './views/Lenta.vue'
 import IconDetail from './views/IconDetail.vue'
 
 Vue.use(Router)
@@ -12,6 +13,11 @@ export default new Router({
 			path: '/',
 			name: 'home',
 			component: Home
+		},
+		{
+			path: '/lenta',
+			name: 'lenta',
+			component: Lenta
 		},
 		{
 			path: '/test',
