@@ -16,14 +16,12 @@
 			v-sheet.trans
 				v-chip-group( mandatory show-arrows active-class="act")
 					v-chip( v-for="tag in tags" :key="tag" ) {{ tag }}
-	v-col.px-0
-		v-card.item
-		v-card.item
-		v-card.item
+	LentaList
 
 </template>
 
 <script>
+import LentaList from '@/components/LentaList'
 
 export default {
 	data () {
@@ -46,6 +44,9 @@ export default {
 		toggle () {
 			this.type = !this.type
 		}
+	},
+	components: {
+		LentaList
 	}
 }
 
