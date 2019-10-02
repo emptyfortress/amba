@@ -16,7 +16,10 @@
 		v-col.pa-0
 			v-sheet.trans
 				v-chip-group( mandatory show-arrows active-class="act")
-					v-chip( v-for="tag in tags" :key="tag" ) {{ tag }}
+					v-chip( v-for="tag in tags" :key="tag" ).rel {{ tag }}
+						.badge
+							span 2
+
 	LentaList
 
 </template>
@@ -96,7 +99,20 @@ export default {
 	height: 100px;
 	box-shadow: none;
 	margin-bottom: .5rem;
-
+}
+.rel {
+	position: relative;
+}
+.badge {
+	position: absolute;
+	right: -3px;
+	top: -10px;
+	/* background: #333; */
+	/* padding: .3rem; */
+	span {
+		font-size: 1.0rem;
+		color: black;
+	}
 }
 
 </style>

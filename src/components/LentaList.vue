@@ -2,26 +2,41 @@
 .mt-5
 	Flipper(:flipKey="focused" spring="stiff")
 		ul.list
-			li(v-for="(item, index) in items" @click="toggleItem(index)" :key="index")
+			li(v-for="(item, index) in items" @click="toggleItem(index)" :key="index").unread
 				Flipped(v-if="index !== focused" :flipId="`item-${index}`")
 					.my
 						Flipped(:inverseFlipId="`item-${index}`")
 							.mycontent
 								Flipped(:flipId="`avatar-${index}`")
-									img(:src="item.avatar")
+									img(:src="item.avatar").av
 								Flipped(:flipId="`title-${index}`")
-									.text {{ item.title }}
+									.zag {{ item.title }}
+						.new(@click.stop="")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
 						Flipped(:inverseFlipId="`item-${index}`" )
 							.expandedcontent
+								.add
+									img(src="@/assets/img/filetype/file-ext-pdf.png").file
+									img(src="@/assets/img/filetype/file-ext-pdf.png").file
+									img(src="@/assets/img/filetype/file-ext-pdf.png").file
+									img(src="@/assets/img/filetype/file-ext-pdf.png").file
+									img(src="@/assets/img/filetype/file-ext-pdf.png").file
+									img(src="@/assets/img/filetype/file-ext-pdf.png").file
+									img(src="@/assets/img/filetype/file-ext-pdf.png").file
 								Flipped(:flipId="`avatar-${index}`" )
-									img(:src="item.avatar")
+									img(:src="item.avatar").av
+								.additional
+									.fio Иванов В.И.
 								Flipped(:flipId="`title-${index}`" )
-									.text {{ item.title }}
+									.zag {{ item.title }}
 								.additional
 									div {{ item.subtitle }}
-									div {{ item.subtitle }}
+									.action
+										v-btn(text small color="primary") Согласовать
+										v-btn(text small color="error") Отклонить
+								//- img(src="@/assets/img/filetype/file-ext-pdf.png")
+						.new
 
 </template>
 
@@ -65,6 +80,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/css/colors.scss';
 
 ul {
 	margin: 0;
@@ -91,15 +107,14 @@ ul {
 	width: 100%;
 	background: #ffffff;
 	border-radius: .3rem;
-	&.expanded {
-		/* height: 300px; */
-	}
+	position: relative;
 	.mycontent {
 		padding: .5rem;
+		padding-left: 1rem;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		img {
+		.av {
 			width: 32px;
 			height: 32px;
 			border-radius: 16px;
@@ -107,24 +122,40 @@ ul {
 		}
 	}
 	.expandedcontent {
-		padding: 1em;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: flex-start;
-		img {
-			width: 128px;
-			height: 128px;
-			border-radius: 64px;
-			margin-bottom: 1rem;
+		padding: 1rem;
+		padding-left: 1.3rem;
+		/* display: flex; */
+		/* flex-direction: column; */
+		/* align-items: flex-start; */
+		/* justify-content: flex-start; */
+		.av {
+			width: 64px;
+			height: 64px;
+			border-radius: 32px;
+			/* margin-bottom: .5rem; */
+			/* align-self: flex-end; */
 		}
-		.text {
-			font-size: 1.5rem;
+		.zag {
+			font-size: 1.3rem;
+			margin-top: .5rem;
 		}
-		.additional div {
-			margin-top: 1rem;
+		.fio {
+			font-size: .9rem;
+			color: #666;
 		}
 	}
+	.new {
+		width: 8px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-radius: .3rem 0 0 .3rem;
+		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGElEQVQYV2NctmzZ/8jISAZGEGBAAigcAI4pBAQE47ttAAAAAElFTkSuQmCC) repeat;
+	}
+}
+.unread .new {
+	background-color: $accent;
 }
 
 .additional > div {
@@ -148,8 +179,24 @@ ul {
 .additional > div:nth-of-type(3) {
 		animation-delay: 0.3s;
 }
-.additional > div + div {
-	float: right;
-		/* margin-top: 1rem; */
+.action {
+	margin-top: 1rem;
+}
+.flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.file {
+	width: 64px;
+}
+.add {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: calc(100% - 150px);
+	height: 62px;
+	overflow: hidden;
+	text-align: right;
 }
 </style>
