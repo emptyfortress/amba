@@ -97,7 +97,6 @@ ul {
 	list-style-type: none;
 	display: flex;
 	flex-direction: column;
-	/* height: 100vh; */
 	padding: 0;
 }
 
@@ -105,28 +104,27 @@ ul {
 	list-style-type: none;
 	cursor: pointer;
 	width: 100%;
-	/* background: #fff; */
 	&+ li {
-			margin-top: .5rem;
+		margin-top: .5rem;
 	}
 }
 
 .my {
 	width: 100%;
 	background: #ffffff;
-	border-radius: .5rem;
+	border-radius: .3rem;
 	&.expanded {
-		height: 300px;
+		/* height: 300px; */
 	}
 	.mycontent {
-		padding: 1em;
+		padding: .5rem;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		img {
-			width: 48px;
-			height: 48px;
-			border-radius: 24px;
+			width: 32px;
+			height: 32px;
+			border-radius: 16px;
 			margin-right: 1rem;
 		}
 	}
@@ -151,4 +149,29 @@ ul {
 	}
 }
 
+.additional > div {
+		opacity: 0;
+}
+@keyframes fadeIn {
+	0% {
+			opacity: 0;
+			transform: translateY(20px);
+	}
+	100% {
+			opacity: 1;
+	}
+}
+.animated-in .additional > div {
+		animation: fadeIn 0.4s forwards;
+}
+.additional > div:nth-of-type(2) {
+		animation-delay: 0.15s;
+}
+.additional > div:nth-of-type(3) {
+		animation-delay: 0.3s;
+}
+.additional > div + div {
+	float: right;
+		/* margin-top: 1rem; */
+}
 </style>
