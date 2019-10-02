@@ -6,13 +6,20 @@
 	.switch
 		span(@click="toggle").all Все
 		v-switch(v-model="type" flat label="Новые" color="primary").mx-3
+		v-spacer
+		v-btn(icon)
+			v-icon mdi-email-open-multiple-outline
 	.search
 		v-text-field(label="Найти")
 	v-row( justify="space-around" )
-		v-col
+		v-col.pa-0
 			v-sheet.trans
 				v-chip-group( mandatory show-arrows active-class="act")
 					v-chip( v-for="tag in tags" :key="tag" ) {{ tag }}
+	v-col.px-0
+		v-card.item
+		v-card.item
+		v-card.item
 
 </template>
 
@@ -76,6 +83,17 @@ export default {
 .v-chip-group .v-chip--active {
 	background: #1976d2;
 	color: white !important;
+}
+.v-text-field {
+	font-size: 1.3rem;
+}
+.item {
+	background: #eee;
+	width: 100%;
+	height: 100px;
+	box-shadow: none;
+	margin-bottom: .5rem;
+
 }
 
 </style>
