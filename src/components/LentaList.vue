@@ -17,13 +17,10 @@
 						Flipped(:inverseFlipId="`item-${index}`" )
 							.expandedcontent
 								.add
-									img(src="@/assets/img/filetype/file-ext-pdf.png").file
-									img(src="@/assets/img/filetype/file-ext-pdf.png").file
-									img(src="@/assets/img/filetype/file-ext-pdf.png").file
-									img(src="@/assets/img/filetype/file-ext-pdf.png").file
-									img(src="@/assets/img/filetype/file-ext-pdf.png").file
-									img(src="@/assets/img/filetype/file-ext-pdf.png").file
-									img(src="@/assets/img/filetype/file-ext-pdf.png").file
+									img(src="@/assets/img/filetype/pdf.svg").file
+									img(src="@/assets/img/filetype/pdf.svg").file
+									img(src="@/assets/img/filetype/pdf.svg").file
+								v-icon.open mdi-open-in-new
 								Flipped(:flipId="`avatar-${index}`" )
 									img(:src="item.avatar").av
 								.additional
@@ -35,7 +32,6 @@
 									.action
 										v-btn(text small color="primary") Согласовать
 										v-btn(text small color="error") Отклонить
-								//- img(src="@/assets/img/filetype/file-ext-pdf.png")
 						.new
 
 </template>
@@ -124,10 +120,10 @@ ul {
 	.expandedcontent {
 		padding: 1rem;
 		padding-left: 1.3rem;
-		/* display: flex; */
-		/* flex-direction: column; */
-		/* align-items: flex-start; */
-		/* justify-content: flex-start; */
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
 		.av {
 			width: 64px;
 			height: 64px;
@@ -187,16 +183,23 @@ ul {
 	justify-content: space-between;
 	align-items: flex-start;
 }
-.file {
-	width: 64px;
-}
 .add {
 	position: absolute;
 	top: 1rem;
-	right: 1rem;
+	right: 2rem;
 	width: calc(100% - 150px);
 	height: 62px;
 	overflow: hidden;
 	text-align: right;
+	.file {
+		margin-right: .3rem;
+
+	}
+}
+.open {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #ccc;
 }
 </style>
