@@ -1,9 +1,10 @@
 <template lang="pug">
 v-app
 	v-navigation-drawer(
-		v-model="leftDrawer" app temporary dark floating hide-overlay
+		v-model="leftDrawer" app temporary floating hide-overlay
 		width="400"
 		src="@/assets/img/green.webp")
+		router-link(to="/lenta").ma-5 lenta
 	v-app-bar(app bottom clipped-left v-if="$route.path !== '/lenta'").transp
 		v-app-bar-nav-icon(@click="leftDrawer = !leftDrawer")
 		v-toolbar-title.headline

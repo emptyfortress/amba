@@ -1,8 +1,9 @@
 <template lang="pug">
 .lenta
-	.logo
-		span.font-weight-bold .dv
-		span( class="font-weight-light" ) 2020
+	router-link(to="/")
+		.logo
+			span.font-weight-bold .dv
+			span( class="font-weight-light" ) 2020
 	.switch
 		span(@click="toggle").all Все
 		v-switch(v-model="type" flat label="Новые" color="primary").mx-3
@@ -62,6 +63,7 @@ export default {
 	position: absolute;
 	bottom: 1rem;
 	left: 1rem;
+	color: black;
 }
 .switch {
 	font-size: 1.0rem;
