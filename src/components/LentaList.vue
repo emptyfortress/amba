@@ -20,7 +20,7 @@
 									img(src="@/assets/img/filetype/pdf.svg").file
 									img(src="@/assets/img/filetype/pdf.svg").file
 									img(src="@/assets/img/filetype/pdf.svg").file
-								v-icon.open mdi-open-in-new
+								v-icon.open mdi-window-close
 								Flipped(:flipId="`avatar-${index}`" )
 									img(:src="item.avatar").av
 								.additional

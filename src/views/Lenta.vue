@@ -10,6 +10,8 @@
 		v-spacer
 		v-btn(icon)
 			v-icon mdi-email-open-multiple-outline
+		v-btn(icon)
+			i.icon-adjust
 	.search
 		v-text-field(label="Найти")
 	v-row( justify="space-around" )
@@ -30,8 +32,9 @@ import LentaList from '@/components/LentaList'
 export default {
 	data () {
 		return {
-			type: true,
+			type: false,
 			tags: [
+				'Мои подписки',
 				'Все',
 				'На исполнение',
 				'На согласование',
@@ -113,6 +116,9 @@ export default {
 		font-size: 1.0rem;
 		color: black;
 	}
+}
+.icon-adjust {
+	font-size: 1.4rem;
 }
 
 </style>
