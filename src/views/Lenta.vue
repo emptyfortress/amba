@@ -18,9 +18,9 @@
 		v-col.pa-0
 			v-sheet.trans
 				v-chip-group( mandatory show-arrows active-class="act")
-					v-chip( v-for="tag in tags" :key="tag" ).rel {{ tag }}
-						.badge
-							span 2
+					v-chip( v-for="tag in tags" :key="tag" pill)
+						| {{ tag }}
+						v-avatar(right).num 2
 
 	LentaList
 
@@ -92,6 +92,13 @@ export default {
 .v-chip-group .v-chip--active {
 	background: #1976d2;
 	color: white !important;
+}
+.num {
+	background: #fff;
+}
+.v-chip--active .num {
+	/* color: red; */
+	background: #1a528a;
 }
 .v-text-field {
 	font-size: 1.3rem;
