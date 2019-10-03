@@ -2,7 +2,7 @@ export default [
 	{
 		id: 1,
 		avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-		title: 'Brunch this weekend?',
+		title: 'Brunch this weekend? Lorem ipsum foooa aasda lkasd aasdas',
 		open: false,
 		subtitle: "Ali Connors &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
 	},

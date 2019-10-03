@@ -9,8 +9,10 @@
 							.mycontent
 								Flipped(:flipId="`avatar-${index}`")
 									img(:src="item.avatar").av
+								Flipped(:flipId="`type-${index}`")
+									.type type
 								Flipped(:flipId="`title-${index}`")
-									.zag {{ item.title }}
+									.zag {{ item.title | truncate(25, '...') }}
 						.new(@click.stop="")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
@@ -25,6 +27,8 @@
 									img(:src="item.avatar").av
 								.additional
 									.fio Иванов В.И.
+								Flipped(:flipId="`type-${index}`")
+									.type type
 								Flipped(:flipId="`title-${index}`" )
 									.zag {{ item.title }}
 								.additional
@@ -115,6 +119,9 @@ ul {
 			height: 32px;
 			border-radius: 16px;
 			margin-right: 1rem;
+		}
+		.type {
+			float: left;
 		}
 	}
 	.expandedcontent {
