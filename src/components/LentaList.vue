@@ -9,38 +9,51 @@
 							.mycontent
 								Flipped(:flipId="`avatar-${index}`")
 									div
-										span.av R
-										v-icon mdi-calendar
-								Flipped(:flipId="`type-${index}`")
-									.type type
+										span.av K
+										v-icon.mr-1 mdi-calendar
+										i.icon-control
 								Flipped(:flipId="`title-${index}`")
-									.zag {{ item.title | truncate(25, '...') }}
+									.zag.ml-4 Новый на согласование
+									//- .zag.ml-4 {{ item.title | truncate(37, '...') }}
 						.new(@click.stop="")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
 						Flipped(:inverseFlipId="`item-${index}`" )
 							.expandedcontent
-								.add
-									img(src="@/assets/img/filetype/pdf.svg").file
-									img(src="@/assets/img/filetype/pdf.svg").file
-									img(src="@/assets/img/filetype/pdf.svg").file
-								v-icon.open mdi-window-close
+								//- v-icon.open mdi-window-close
 								Flipped(:flipId="`avatar-${index}`" )
 									div
-										span.av Ratten
-										v-icon mdi-calendar
-								.additional
-									.fio Иванов В.И.
-								Flipped(:flipId="`type-${index}`")
-									.type type
+										span.av Я на Контроле
+										v-icon.opac mdi-calendar
+										span 22 окт
+										i.icon-control.ml-3.opac
+										span Иванов И.Г.
+								//- Flipped(:flipId="`type-${index}`")
+								//- 	.cont
+								//- 		v-icon mdi-glasses
 								Flipped(:flipId="`title-${index}`" )
-									.zag {{ item.title }}
+									.zag Это примерный заголовок для эксперимента
+									//- .zag {{ item.title }}
 								.additional
-									div {{ item.subtitle }}
+									div.sub {{ item.subtitle }}
+									v-expansion-panels
+										v-expansion-panel(@click.stop="")
+											v-expansion-panel-header Item
+											v-expansion-panel-content telakjsdl alksdj alksjd lak
+									.add
+										img(src="@/assets/img/filetype/pdf.svg").file
+										img(src="@/assets/img/filetype/pdf.svg").file
+										img(src="@/assets/img/filetype/pdf.svg").file
 									.action
 										v-btn(text small color="primary") Согласовать
 										v-btn(text small color="error") Отклонить
-						.new
+									div(@click.stop="")
+										svg-transition(ref="transition" trigger="click")
+											svg(slot="initial")
+												use(href="#one")
+											svg
+												use(href="#two")
+														.new
 
 </template>
 
@@ -103,7 +116,7 @@ ul {
 	cursor: pointer;
 	width: 100%;
 	&+ li {
-		margin-top: .5rem;
+		margin-top: .2rem;
 	}
 }
 
@@ -128,8 +141,10 @@ ul {
 			text-align: center;
 			line-height: 32px;
 		}
-		.type {
-			float: left;
+		.cont {
+			margin-left: 1rem;
+		}
+		.zag {
 		}
 	}
 	.expandedcontent {
@@ -147,17 +162,27 @@ ul {
 			background: #ccc;
 			padding: 0 1rem;
 			line-height: 32px;
-			margin-right: .5rem;
-			/* margin-bottom: .5rem; */
-			/* align-self: flex-end; */
+			margin-right: 1rem;
 		}
 		.zag {
-			font-size: 1.3rem;
-			margin-top: .5rem;
+			font-size: 1.1rem;
+			font-weight: bold;
+			margin-top: 1.5rem;
+			margin-bottom: .5rem;
+			line-height: 120%;
 		}
 		.fio {
 			font-size: .9rem;
 			color: #666;
+		}
+		.opac {
+			opacity: .6;
+		}
+		.sub {
+			font-size: .95rem;
+			line-height: 110%;
+			color: #666;
+
 		}
 	}
 	.new {
@@ -195,6 +220,12 @@ ul {
 .additional > div:nth-of-type(3) {
 		animation-delay: 0.3s;
 }
+.additional > div:nth-of-type(4) {
+		animation-delay: 0.4s;
+}
+.additional > div:nth-of-type(5) {
+		animation-delay: 0.5s;
+}
 .action {
 	margin-top: 1rem;
 }
@@ -204,12 +235,12 @@ ul {
 	align-items: flex-start;
 }
 .add {
-	position: absolute;
-	top: 1rem;
-	right: 2rem;
-	width: calc(100% - 150px);
+	/* position: absolute; */
+	/* top: 1rem; */
+	/* right: 2rem; */
+	/* width: calc(100% - 150px); */
 	height: 62px;
-	overflow: hidden;
+	/* overflow: hidden; */
 	text-align: right;
 	.file {
 		margin-right: .3rem;
