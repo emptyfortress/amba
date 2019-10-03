@@ -8,7 +8,9 @@
 						Flipped(:inverseFlipId="`item-${index}`")
 							.mycontent
 								Flipped(:flipId="`avatar-${index}`")
-									img(:src="item.avatar").av
+									div
+										span.av R
+										v-icon mdi-calendar
 								Flipped(:flipId="`type-${index}`")
 									.type type
 								Flipped(:flipId="`title-${index}`")
@@ -24,7 +26,9 @@
 									img(src="@/assets/img/filetype/pdf.svg").file
 								v-icon.open mdi-window-close
 								Flipped(:flipId="`avatar-${index}`" )
-									img(:src="item.avatar").av
+									div
+										span.av Ratten
+										v-icon mdi-calendar
 								.additional
 									.fio Иванов В.И.
 								Flipped(:flipId="`type-${index}`")
@@ -115,10 +119,14 @@ ul {
 		flex-direction: row;
 		align-items: center;
 		.av {
+			display: inline-block;
 			width: 32px;
 			height: 32px;
 			border-radius: 16px;
-			margin-right: 1rem;
+			margin-right: .5rem;
+			background: #ccc;
+			text-align: center;
+			line-height: 32px;
 		}
 		.type {
 			float: left;
@@ -132,9 +140,14 @@ ul {
 		align-items: flex-start;
 		justify-content: flex-start;
 		.av {
-			width: 64px;
-			height: 64px;
-			border-radius: 32px;
+			width: auto;
+			display: inline-block;
+			height: 32px;
+			border-radius: 16px;
+			background: #ccc;
+			padding: 0 1rem;
+			line-height: 32px;
+			margin-right: .5rem;
 			/* margin-bottom: .5rem; */
 			/* align-self: flex-end; */
 		}
