@@ -1,23 +1,23 @@
 export default [
 	{
 		id: 1,
-		avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-		title: 'Новый на согласование',
+		av: 'Р',
+		avatar: 'На рассмотрение',
+		title: 'Об эксплуатации автоматизированной информационной системы государственного заказа Санкт-Петербурга',
 		open: false,
-		subtitle: "Ali Connors &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-	},
-	{
-		id: 2,
-		avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-		title: 'Summer BBQ',
-		open: false,
-		subtitle: "to Alex, Scott, Jennifer &mdash; Wish I could come, but I'm out of town this weekend."
-	},
-	{
-		id: 3,
-		avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-		title: 'Oui oui',
-		open: false,
-		subtitle: 'Sandra Adams &mdash; Do you have Paris recommendations? Have you ever been?'
+		deadline: '22 окт.',
+		controller: 'Сорокина Г.А.',
+		subtitle: 'Этажное залегание несет в себе сейсмический разлом, и в то же время устанавливается достаточно приподнятый над уровнем моря коренной цоколь.',
+		attributes: {
+			type: 'Документ',
+			vid: 'На рассмотрение',
+			num: '435/12-р',
+			date: '15.09.19',
+			author: 'Галкин П.П.',
+			task: 'расписано',
+			taskauthor: 'Сидоров К.А.',
+			main: 'Климов М.К.'
+		},
+		actions: ['К документу', 'Исполнить', 'На исполнение', 'Делегировать']
 	}
 ]

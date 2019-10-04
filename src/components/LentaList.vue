@@ -9,7 +9,7 @@
 							.mycontent
 								Flipped(:flipId="`avatar-${index}`")
 									div
-										span.av K
+										span.av {{ item.av }}
 										v-icon.mr-1 mdi-calendar
 										i.icon-control
 								Flipped(:flipId="`title-${index}`")
@@ -22,11 +22,11 @@
 								.new
 								Flipped(:flipId="`avatar-${index}`" )
 									div
-										span.av Я на Контроле
+										span.av {{ item.avatar }}
 										v-icon.opac mdi-calendar
-										span 22 окт
+										span {{ item.deadline }}
 										i.icon-control.ml-3.opac
-										span Иванов И.Г.
+										span {{ item.controller}}
 								Flipped(:flipId="`title-${index}`" )
 									.zag {{ item.title }}
 								.additional
@@ -56,28 +56,19 @@
 											tr
 												td one:
 												td laksjdl
-
-									.action(@click.stop="")
-										v-btn(text small color="primary") Открыть
-										v-btn(text small color="primary") Открыть
-										v-btn(text small color="error") Исполнить
-										v-menu( transition="slide-x-transition" bottom right )
-											template( v-slot:activator="{ on }" )
-												v-btn(icon small v-on="on")
-													v-icon mdi-dots-vertical
-											v-list
-												v-list-item( v-for="(item, i) in items" :key="i" @click="" )
-													v-list-item-title {{ item.title }}
+									ActionBt(:list="item.actions" visible="3")
 </template>
 
 <script>
 import { Flipper, Flipped } from 'vue-flip-toolkit'
+import ActionBt from '@/components/ActionBt'
 import data from '@/components/notifications.js'
 
 export default {
 	components: {
 		Flipped,
-		Flipper
+		Flipper,
+		ActionBt
 	},
 	data () {
 		return {
@@ -245,12 +236,6 @@ ul {
 .additional > div:nth-of-type(5) {
 		animation-delay: 0.4s;
 }
-.action {
-	margin-top: 1rem;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
 .flex {
 	display: flex;
 	justify-content: space-between;
@@ -264,27 +249,21 @@ ul {
 		margin-right: .3rem;
 	}
 }
-.open {
-	position: absolute;
-	top: 0;
-	right: 0;
-	color: #ccc;
-}
-.v-expansion-panel::before {
-	box-shadow: none;
-}
-.v-expansion-panel-header {
-	padding: 0;
-	border: 0;
-	min-height: 32px;
-}
-.expand {
-	box-shadow: none;
-	border-bottom: 1px solid #ccc;
-	.theme--light.v-card {
-		background: transparent;
-	}
-}
+/* .v-expansion-panel::before { */
+/* 	box-shadow: none; */
+/* } */
+/* .v-expansion-panel-header { */
+/* 	padding: 0; */
+/* 	border: 0; */
+/* 	min-height: 32px; */
+/* } */
+/* .expand { */
+/* 	box-shadow: none; */
+/* 	border-bottom: 1px solid #ccc; */
+/* 	.theme--light.v-card { */
+/* 		background: transparent; */
+/* 	} */
+/* } */
 .inf {
 	width: 100%;
 	font-size: .93rem;
