@@ -20,6 +20,7 @@
 					.my.expanded
 						Flipped(:inverseFlipId="`item-${index}`" )
 							.expandedcontent
+								.new
 								//- v-icon.open mdi-window-close
 								Flipped(:flipId="`avatar-${index}`" )
 									div
@@ -35,6 +36,12 @@
 									.zag Это примерный заголовок для эксперимента
 									//- .zag {{ item.title }}
 								.additional
+									.fav(@click.stop="")
+										svg-transition(ref="transition" trigger="click")
+											svg(slot="initial")
+												use(href="#star")
+											svg
+												use(href="#star1")
 									div.sub {{ item.subtitle }}
 									v-expansion-panels
 										v-expansion-panel(@click.stop="")
@@ -47,13 +54,6 @@
 									.action
 										v-btn(text small color="primary") Согласовать
 										v-btn(text small color="error") Отклонить
-									div(@click.stop="")
-										svg-transition(ref="transition" trigger="click")
-											svg(slot="initial")
-												use(href="#one")
-											svg
-												use(href="#two")
-														.new
 
 </template>
 
@@ -133,13 +133,14 @@ ul {
 		align-items: center;
 		.av {
 			display: inline-block;
-			width: 32px;
-			height: 32px;
-			border-radius: 16px;
+			width: 28px;
+			height: 28px;
+			border-radius: 14px;
 			margin-right: .5rem;
 			background: #ccc;
 			text-align: center;
-			line-height: 32px;
+			line-height: 28px;
+			font-size: .9rem;
 		}
 		.cont {
 			margin-left: 1rem;
@@ -157,12 +158,13 @@ ul {
 		.av {
 			width: auto;
 			display: inline-block;
-			height: 32px;
-			border-radius: 16px;
+			height: 28px;
+			border-radius: 14px;
 			background: #ccc;
 			padding: 0 1rem;
-			line-height: 32px;
+			line-height: 28px;
 			margin-right: 1rem;
+			font-size: .8rem;
 		}
 		.zag {
 			font-size: 1.1rem;
@@ -182,7 +184,6 @@ ul {
 			font-size: .95rem;
 			line-height: 110%;
 			color: #666;
-
 		}
 	}
 	.new {
@@ -194,6 +195,11 @@ ul {
 		border-radius: .3rem 0 0 .3rem;
 		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGElEQVQYV2NctmzZ/8jISAZGEGBAAigcAI4pBAQE47ttAAAAAElFTkSuQmCC) repeat;
 	}
+}
+.fav {
+	position: absolute;
+	top: .6rem;
+	right: .6rem;
 }
 .unread .new {
 	background-color: $accent;
