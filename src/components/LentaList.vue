@@ -33,42 +33,30 @@
 									.fav(@click.stop="")
 										svg-transition(ref="transition" trigger="click")
 											svg(slot="initial")
-												use(href="#star")
+												use(:href="favorite (item)")
 											svg
-												use(href="#star1")
+												use(:href="favorite1 (item)")
 									div.sub {{ item.subtitle }}
-									.add
+									.files
 										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
 										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
 										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
-									.inf
-										table
-											tr
-												td one:
-												td laksjdl
-											tr
-												td oasldkjne:
-												td laksjdl
-										table
-											tr
-												td one:
-												td laksjdl
-											tr
-												td one:
-												td laksjdl
+									AttributeTable(:data="item")
 									ActionBt(:list="item.actions" visible="3")
 </template>
 
 <script>
 import { Flipper, Flipped } from 'vue-flip-toolkit'
 import ActionBt from '@/components/ActionBt'
+import AttributeTable from '@/components/AttributeTable'
 import data from '@/components/notifications.js'
 
 export default {
 	components: {
 		Flipped,
 		Flipper,
-		ActionBt
+		ActionBt,
+		AttributeTable
 	},
 	data () {
 		return {
@@ -77,6 +65,16 @@ export default {
 		}
 	},
 	methods: {
+		favorite (e) {
+			if (e.fav === true) {
+				return '#star1'
+			} else return '#star'
+		},
+		favorite1 (e) {
+			if (e.fav === true) {
+				return '#star'
+			} else return '#star1'
+		},
 		toggleItem (index) {
 			if (this.focused === index) {
 				this.focused = null
@@ -241,34 +239,12 @@ ul {
 	justify-content: space-between;
 	align-items: flex-start;
 }
-.add {
+.files {
 	margin-top: 1rem;
 	margin-bottom: .5rem;
 	.file {
 		width: 32px;
 		margin-right: .3rem;
 	}
-}
-/* .v-expansion-panel::before { */
-/* 	box-shadow: none; */
-/* } */
-/* .v-expansion-panel-header { */
-/* 	padding: 0; */
-/* 	border: 0; */
-/* 	min-height: 32px; */
-/* } */
-/* .expand { */
-/* 	box-shadow: none; */
-/* 	border-bottom: 1px solid #ccc; */
-/* 	.theme--light.v-card { */
-/* 		background: transparent; */
-/* 	} */
-/* } */
-.inf {
-	width: 100%;
-	font-size: .93rem;
-	background: #eee;
-	display: flex;
-	justify-content: space-around;
 }
 </style>
