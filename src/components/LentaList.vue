@@ -41,14 +41,33 @@
 										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
 										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
 										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
-									v-expansion-panels(accordion @click.stop="")
-										v-expansion-panel(@click.stop="")
-											v-expansion-panel-header Подробная информация
-											v-expansion-panel-content telakjsdl alksdj alksjd lak
-									.action
-										v-btn(text small color="primary") Согласовать
-										v-btn(text small color="error") Отклонить
+									.inf
+										table
+											tr
+												td one:
+												td laksjdl
+											tr
+												td oasldkjne:
+												td laksjdl
+										table
+											tr
+												td one:
+												td laksjdl
+											tr
+												td one:
+												td laksjdl
 
+									.action(@click.stop="")
+										v-btn(text small color="primary") Открыть
+										v-btn(text small color="primary") Открыть
+										v-btn(text small color="error") Исполнить
+										v-menu( transition="slide-x-transition" bottom right )
+											template( v-slot:activator="{ on }" )
+												v-btn(icon small v-on="on")
+													v-icon mdi-dots-vertical
+											v-list
+												v-list-item( v-for="(item, i) in items" :key="i" @click="" )
+													v-list-item-title {{ item.title }}
 </template>
 
 <script>
@@ -228,6 +247,9 @@ ul {
 }
 .action {
 	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 .flex {
 	display: flex;
@@ -263,7 +285,11 @@ ul {
 		background: transparent;
 	}
 }
-button {
-	box-shadow: none;
+.inf {
+	width: 100%;
+	font-size: .93rem;
+	background: #eee;
+	display: flex;
+	justify-content: space-around;
 }
 </style>
