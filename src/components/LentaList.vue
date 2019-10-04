@@ -13,15 +13,13 @@
 										v-icon.mr-1 mdi-calendar
 										i.icon-control
 								Flipped(:flipId="`title-${index}`")
-									.zag.ml-4 Новый на согласование
-									//- .zag.ml-4 {{ item.title | truncate(37, '...') }}
+									.zag.ml-4 {{ item.title | truncate(37, '...') }}
 						.new(@click.stop="")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
 						Flipped(:inverseFlipId="`item-${index}`" )
 							.expandedcontent
 								.new
-								//- v-icon.open mdi-window-close
 								Flipped(:flipId="`avatar-${index}`" )
 									div
 										span.av Я на Контроле
@@ -29,12 +27,8 @@
 										span 22 окт
 										i.icon-control.ml-3.opac
 										span Иванов И.Г.
-								//- Flipped(:flipId="`type-${index}`")
-								//- 	.cont
-								//- 		v-icon mdi-glasses
 								Flipped(:flipId="`title-${index}`" )
-									.zag Это примерный заголовок для эксперимента
-									//- .zag {{ item.title }}
+									.zag {{ item.title }}
 								.additional
 									.fav(@click.stop="")
 										svg-transition(ref="transition" trigger="click")
@@ -43,14 +37,14 @@
 											svg
 												use(href="#star1")
 									div.sub {{ item.subtitle }}
-									v-expansion-panels
-										v-expansion-panel(@click.stop="")
-											v-expansion-panel-header Item
-											v-expansion-panel-content telakjsdl alksdj alksjd lak
 									.add
-										img(src="@/assets/img/filetype/pdf.svg").file
-										img(src="@/assets/img/filetype/pdf.svg").file
-										img(src="@/assets/img/filetype/pdf.svg").file
+										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
+										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
+										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
+									v-expansion-panels(accordion @click.stop="")
+										v-expansion-panel(@click.stop="")
+											v-expansion-panel-header Подробная информация
+											v-expansion-panel-content telakjsdl alksdj alksjd lak
 									.action
 										v-btn(text small color="primary") Согласовать
 										v-btn(text small color="error") Отклонить
@@ -221,16 +215,16 @@ ul {
 		animation: fadeIn 0.4s forwards;
 }
 .additional > div:nth-of-type(2) {
-		animation-delay: 0.15s;
+		animation-delay: 0.1s;
 }
 .additional > div:nth-of-type(3) {
-		animation-delay: 0.3s;
+		animation-delay: 0.2s;
 }
 .additional > div:nth-of-type(4) {
-		animation-delay: 0.4s;
+		animation-delay: 0.3s;
 }
 .additional > div:nth-of-type(5) {
-		animation-delay: 0.5s;
+		animation-delay: 0.4s;
 }
 .action {
 	margin-top: 1rem;
@@ -241,16 +235,11 @@ ul {
 	align-items: flex-start;
 }
 .add {
-	/* position: absolute; */
-	/* top: 1rem; */
-	/* right: 2rem; */
-	/* width: calc(100% - 150px); */
-	height: 62px;
-	/* overflow: hidden; */
-	text-align: right;
+	margin-top: 1rem;
+	margin-bottom: .5rem;
 	.file {
+		width: 32px;
 		margin-right: .3rem;
-
 	}
 }
 .open {
@@ -258,5 +247,23 @@ ul {
 	top: 0;
 	right: 0;
 	color: #ccc;
+}
+.v-expansion-panel::before {
+	box-shadow: none;
+}
+.v-expansion-panel-header {
+	padding: 0;
+	border: 0;
+	min-height: 32px;
+}
+.expand {
+	box-shadow: none;
+	border-bottom: 1px solid #ccc;
+	.theme--light.v-card {
+		background: transparent;
+	}
+}
+button {
+	box-shadow: none;
 }
 </style>
