@@ -13,7 +13,7 @@
 										v-icon.mr-1 mdi-calendar
 										i.icon-control
 								Flipped(:flipId="`title-${index}`")
-									.zag.ml-4 {{ item.title | truncate(37, '...') }}
+									.zag.ml-4 {{ item.title | truncate(33, '...') }}
 						.new(@click.stop="")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
@@ -37,10 +37,7 @@
 											svg
 												use(:href="favorite1 (item)")
 									div.sub {{ item.subtitle }}
-									.files
-										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
-										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
-										img(src="@/assets/img/filetype/pdf.svg" @click.stop="").file
+									Files(:data="item")
 									AttributeTable(:data="item")
 									ActionBt(:list="item.actions" visible="3")
 </template>
@@ -49,6 +46,7 @@
 import { Flipper, Flipped } from 'vue-flip-toolkit'
 import ActionBt from '@/components/ActionBt'
 import AttributeTable from '@/components/AttributeTable'
+import Files from '@/components/Files'
 import data from '@/components/notifications.js'
 
 export default {
@@ -56,7 +54,8 @@ export default {
 		Flipped,
 		Flipper,
 		ActionBt,
-		AttributeTable
+		AttributeTable,
+		Files
 	},
 	data () {
 		return {
@@ -200,8 +199,8 @@ ul {
 }
 .fav {
 	position: absolute;
-	top: .6rem;
-	right: .6rem;
+	top: .4rem;
+	right: .1rem;
 }
 .unread .new {
 	background-color: $accent;
@@ -220,31 +219,23 @@ ul {
 	}
 }
 .animated-in .additional > div {
-		animation: fadeIn 0.4s forwards;
+		animation: fadeIn 0.3s forwards;
 }
 .additional > div:nth-of-type(2) {
 		animation-delay: 0.1s;
 }
 .additional > div:nth-of-type(3) {
-		animation-delay: 0.2s;
+		animation-delay: 0.15s;
 }
 .additional > div:nth-of-type(4) {
-		animation-delay: 0.3s;
+		animation-delay: 0.2s;
 }
 .additional > div:nth-of-type(5) {
-		animation-delay: 0.4s;
+		animation-delay: 0.3s;
 }
 .flex {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-}
-.files {
-	margin-top: 1rem;
-	margin-bottom: .5rem;
-	.file {
-		width: 32px;
-		margin-right: .3rem;
-	}
 }
 </style>

@@ -1,9 +1,5 @@
 <template lang="pug">
 .lenta
-	router-link(to="/")
-		.logo
-			span.font-weight-bold .dv
-			span( class="font-weight-light" ) 2020
 	.switch
 		span(@click="toggle").all Все
 		v-switch(v-model="type" flat label="Новые" color="primary").mx-3
@@ -21,8 +17,10 @@
 					v-chip( v-for="tag in tags" :key="tag" pill)
 						| {{ tag }}
 						v-avatar(right).num 2
-
 	LentaList
+	router-link(to="/").logo
+			span.font-weight-bold .dv
+			span( class="font-weight-light" ) 2020
 
 </template>
 
@@ -62,14 +60,12 @@ export default {
 <style scoped lang="scss">
 .lenta {
 	padding: .5rem 1rem;
-	position: relative;
-	height: 100vh;
 }
 .logo {
-	position: absolute;
-	bottom: 1rem;
-	left: 1rem;
+	display: block;
 	color: black;
+	text-decoration: none;
+	margin-top: 1rem;
 }
 .switch {
 	font-size: 1.0rem;
