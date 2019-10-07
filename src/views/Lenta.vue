@@ -13,14 +13,19 @@
 	v-row( justify="space-around" )
 		v-col.pa-0
 			v-sheet.trans
-				v-chip-group( mandatory show-arrows active-class="act")
-					v-chip( v-for="tag in tags" :key="tag" pill)
-						| {{ tag }}
+				v-chip-group( mandatory show-arrows active-class="act" v-model="activeTag")
+					v-chip( v-for="tag in tags" :key="tag.title" pill )
+						| {{ tag.title }}
 						v-avatar(right).num 2
-	LentaList
+	v-expansion-panels(v-model="panel" multiple)
+		v-expansion-panel(v-for="(item,i) in datelist" :key="i").trans
+			v-expansion-panel-header {{ item }}
+			v-expansion-panel-content
+				LentaList(:scope="activeTag")
+	.space
 	router-link(to="/").logo
-			span.font-weight-bold .dv
-			span( class="font-weight-light" ) 2020
+		span.font-weight-bold .dv
+		span( class="font-weight-light" ) 2020
 
 </template>
 
@@ -31,17 +36,24 @@ export default {
 	data () {
 		return {
 			type: false,
+			activeTag: 1,
+			panel: [0, null, null, null],
 			tags: [
-				'Мои подписки',
-				'Все',
-				'На исполнение',
-				'На согласование',
-				'На ознакомление',
-				'Мои согласования',
-				'Мои подписания',
-				'Мои поручения',
-				'Я - контролер',
-				'Делегировано'
+				{ title: 'Мои подписки' },
+				{ title: 'Все' },
+				{ title: 'На исполнение' },
+				{ title: 'На согласование' },
+				{ title: 'На ознакомление' },
+				{ title: 'Мои согласования' },
+				{ title: 'Мои подписания' },
+				{ title: 'Я - контролер' },
+				{ title: 'Делегировано' }
+			],
+			datelist: [
+				'Сегодня, 7 октября, понедельник',
+				'Вчера, 6 октября, воскресенье',
+				'5 октября, суббота',
+				'4 октября, пятница'
 			]
 		}
 	},
@@ -66,6 +78,12 @@ export default {
 	color: black;
 	text-decoration: none;
 	margin-top: 1rem;
+	position: fixed;
+	bottom: 1rem;
+	left: 1rem;
+	background: #A3ADB5;
+	padding: 0 .5rem;
+	z-index: 10;
 }
 .switch {
 	font-size: 1.0rem;
@@ -123,5 +141,24 @@ export default {
 .icon-adjust {
 	font-size: 1.4rem;
 }
-
+.space {
+	height: 100px;
+}
+.trans {
+	background: transparent !important;
+	padding: 0 !important;
+	&::before {
+		box-shadow: none;
+	}
+}
+.v-expansion-panel-header {
+	padding: 0;
+}
+.v-expansion-panel-content__wrap {
+	background: red;
+	padding: 0px !important;
+	margin: 0 !important;
+	/* padding: 0 !important; */
+	/* margin: 0 !important; */
+}
 </style>

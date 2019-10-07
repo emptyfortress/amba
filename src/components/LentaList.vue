@@ -1,8 +1,8 @@
 <template lang="pug">
-.mt-5
+.mt-1
 	Flipper(:flipKey="focused" spring="stiff")
 		ul.list
-			li(v-for="(item, index) in items" @click="toggleItem(index)" :key="index").unread
+			li(v-for="(item, index) in items" @click="toggleItem(index)" :key="index" :class="item.unread ? 'unread' : '' ")
 				Flipped(v-if="index !== focused" :flipId="`item-${index}`")
 					.my
 						Flipped(:inverseFlipId="`item-${index}`")
@@ -14,12 +14,12 @@
 										i.icon-control
 								Flipped(:flipId="`title-${index}`")
 									.zag.ml-4 {{ item.title | truncate(33, '...') }}
-						.new(@click.stop="")
+						.new(@click.stop="toggleNew(item)")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
 						Flipped(:inverseFlipId="`item-${index}`" )
 							.expandedcontent
-								.new
+								.new(@click.stop="toggleNew(item)")
 								Flipped(:flipId="`avatar-${index}`" )
 									div
 										span.av {{ item.avatar }}
@@ -30,12 +30,12 @@
 								Flipped(:flipId="`title-${index}`" )
 									.zag {{ item.title }}
 								.additional
-									.fav(@click.stop="")
-										svg-transition(ref="transition" trigger="click")
+									.fav(@click.stop="fav(item, index)")
+										svg-transition(trigger="click")
 											svg(slot="initial")
-												use(:href="favorite (item)")
+												use(:href="item.fav ? '#star1' : '#star'")
 											svg
-												use(:href="favorite1 (item)")
+												use(:href="!item.fav ? '#star' : '#star1'")
 									div.sub {{ item.subtitle }}
 									Files(:data="item")
 									AttributeTable(:data="item")
@@ -50,6 +50,7 @@ import Files from '@/components/Files'
 import data from '@/components/notifications.js'
 
 export default {
+	props: ['scope'],
 	components: {
 		Flipped,
 		Flipper,
@@ -59,20 +60,24 @@ export default {
 	},
 	data () {
 		return {
-			items: data,
+			allitems: data,
 			focused: null
 		}
 	},
+	computed: {
+		items () {
+			let all = this.allitems
+			if (this.scope === 0) {
+				return all.filter(item => item.fav)
+			} else return all
+		}
+	},
 	methods: {
-		favorite (e) {
-			if (e.fav === true) {
-				return '#star1'
-			} else return '#star'
+		fav (e, i) {
+			e.fav = !e.fav
 		},
-		favorite1 (e) {
-			if (e.fav === true) {
-				return '#star'
-			} else return '#star1'
+		toggleNew (e) {
+			e.unread = !e.unread
 		},
 		toggleItem (index) {
 			if (this.focused === index) {
@@ -90,7 +95,7 @@ export default {
 		handleStart ({ el }) {
 			setTimeout(() => {
 				el.classList.add('animated-in')
-			}, 600)
+			}, 400)
 		}
 	}
 }
@@ -169,7 +174,6 @@ ul {
 		}
 		.zag {
 			font-size: 1.1rem;
-			font-weight: bold;
 			margin-top: 1.5rem;
 			margin-bottom: .5rem;
 			line-height: 120%;
@@ -204,6 +208,9 @@ ul {
 }
 .unread .new {
 	background-color: $accent;
+}
+.unread .zag {
+	font-weight: bold;
 }
 
 .additional > div {
