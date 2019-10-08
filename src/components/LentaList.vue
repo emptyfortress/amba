@@ -67,7 +67,9 @@ export default {
 	computed: {
 		items () {
 			let all = this.allitems
-			if (this.scope === 0) {
+			if (this.onlyNew) {
+				return all.filter(item => item.unread)
+			} else if (this.scope === 0) {
 				return all.filter(item => item.fav)
 			} else if (this.scope === 2) {
 				return all.filter(item => item.attributes.vid === 'На исполнение')
@@ -95,10 +97,6 @@ export default {
 			e.unread = !e.unread
 		},
 		clearUnread () {
-			// console.log(222)
-			// this.allitems.map(function (item) {
-			// 	item.unread = false
-			// })
 		},
 		toggleItem (index) {
 			if (this.focused === index) {
