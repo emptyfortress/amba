@@ -2,9 +2,9 @@
 .lenta
 	.switch
 		span(@click="toggle").all Все
-		v-switch(v-model="type" flat label="Новые" color="primary").mx-3
+		v-switch(v-model="onlyNew" flat label="Новые" color="primary").mx-3
 		v-spacer
-		v-btn(icon)
+		v-btn(icon @click="readAll")
 			v-icon mdi-email-open-multiple-outline
 		v-btn(icon)
 			i.icon-adjust
@@ -21,11 +21,11 @@
 		v-expansion-panel(v-for="(item,i) in datelist" :key="i").trans
 			v-expansion-panel-header {{ item }}
 			v-expansion-panel-content
-				LentaList(:scope="activeTag")
+				LentaList(ref="lentaList" :scope="activeTag" :onlyNew="onlyNew")
 	.space
-	router-link(to="/").logo
-		span.font-weight-bold .dv
-		span( class="font-weight-light" ) 2020
+	//- router-link(to="/").logo
+	//- 	span.font-weight-bold .dv
+	//- 	span( class="font-weight-light" ) 2020
 
 </template>
 
@@ -35,8 +35,9 @@ import LentaList from '@/components/LentaList'
 export default {
 	data () {
 		return {
-			type: false,
+			onlyNew: false,
 			activeTag: 1,
+			markAllRead: false,
 			panel: [0, null, null, null],
 			tags: [
 				{ title: 'Мои подписки' },
@@ -59,7 +60,11 @@ export default {
 	},
 	methods: {
 		toggle () {
-			this.type = !this.type
+			this.onlyNew = !this.onlyNew
+		},
+		readAll () {
+			// console.log(this.$refs.lentaList.clearUnread())
+			// this.$refs.lentaList.clearUnread
 		}
 	},
 	components: {
@@ -72,6 +77,8 @@ export default {
 <style scoped lang="scss">
 .lenta {
 	padding: .5rem 1rem;
+	max-width: 480px;
+	margin: 0 auto;
 }
 .logo {
 	display: block;

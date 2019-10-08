@@ -10,10 +10,10 @@
 								Flipped(:flipId="`avatar-${index}`")
 									div
 										span.av {{ item.av }}
-										v-icon.mr-1 mdi-calendar
-										i.icon-control
+										v-icon(v-if="item.deadline").mr-1 mdi-calendar
+										i(v-if="item.controller").icon-control
 								Flipped(:flipId="`title-${index}`")
-									.zag.ml-4 {{ item.title | truncate(33, '...') }}
+									.zag.ml-4 {{ item.title | truncate(29, '...') }}
 						.new(@click.stop="toggleNew(item)")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
@@ -23,9 +23,9 @@
 								Flipped(:flipId="`avatar-${index}`" )
 									div
 										span.av {{ item.avatar }}
-										v-icon.opac mdi-calendar
+										v-icon(v-if="item.deadline").opac mdi-calendar
 										span {{ item.deadline }}
-										i.icon-control.ml-3.opac
+										i(v-if="item.controller").icon-control.ml-3.opac
 										span {{ item.controller}}
 								Flipped(:flipId="`title-${index}`" )
 									.zag {{ item.title }}
@@ -50,7 +50,7 @@ import Files from '@/components/Files'
 import data from '@/components/notifications.js'
 
 export default {
-	props: ['scope'],
+	props: ['scope', 'onlyNew'],
 	components: {
 		Flipped,
 		Flipper,
@@ -69,15 +69,36 @@ export default {
 			let all = this.allitems
 			if (this.scope === 0) {
 				return all.filter(item => item.fav)
+			} else if (this.scope === 2) {
+				return all.filter(item => item.attributes.vid === 'На исполнение')
+			} else if (this.scope === 3) {
+				return all.filter(item => item.attributes.vid === 'На согласование')
+			} else if (this.scope === 4) {
+				return all.filter(item => item.attributes.vid === 'На ознакомление')
+			} else if (this.scope === 5) {
+				return all.filter(item => item.attributes.vid === 'Мои согласования')
+			} else if (this.scope === 6) {
+				return all.filter(item => item.attributes.vid === 'Мои подписания')
+			} else if (this.scope === 7) {
+				return all.filter(item => item.attributes.vid === 'Я - контролер')
+			} else if (this.scope === 8) {
+				return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
 			} else return all
 		}
 	},
+
 	methods: {
 		fav (e, i) {
 			e.fav = !e.fav
 		},
 		toggleNew (e) {
 			e.unread = !e.unread
+		},
+		clearUnread () {
+			// console.log(222)
+			// this.allitems.map(function (item) {
+			// 	item.unread = false
+			// })
 		},
 		toggleItem (index) {
 			if (this.focused === index) {
@@ -115,6 +136,7 @@ ul {
 	display: flex;
 	flex-direction: column;
 	padding: 0;
+	margin: 0 -24px;
 }
 
 .list li {
