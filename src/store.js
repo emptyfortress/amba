@@ -19,17 +19,8 @@ export default new Vuex.Store({
 	},
 	actions: {
 		loadNotifications ({ commit }) {
-			// let temp = [...data]
 			commit('setLoading', true)
 			commit('setNotifications', data)
-			// db.ref('notifications').once('value', snapshot => {
-			// 	const items = snapshot.val()
-			// 	commit('setNotifications', items)
-			// })
 		}
-
 	}
-	// firebase: {
-	// 	notifications: db.ref('notifications')
-	// }
 })

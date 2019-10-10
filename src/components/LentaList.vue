@@ -47,10 +47,9 @@ import { Flipper, Flipped } from 'vue-flip-toolkit'
 import ActionBt from '@/components/ActionBt'
 import AttributeTable from '@/components/AttributeTable'
 import Files from '@/components/Files'
-// import data from '@/components/notifications.js'
 
 export default {
-	props: ['scope', 'onlyNew'],
+	props: ['items'],
 	components: {
 		Flipped,
 		Flipper,
@@ -60,38 +59,9 @@ export default {
 	},
 	data () {
 		return {
-			// allitems: data,
 			focused: null
 		}
 	},
-	computed: {
-		allitems () {
-			return this.$store.getters.notifications
-		},
-		items () {
-			let all = this.allitems
-			if (this.onlyNew) {
-				return all.filter(item => item.unread)
-			} else if (this.scope === 0) {
-				return all.filter(item => item.fav)
-			} else if (this.scope === 2) {
-				return all.filter(item => item.attributes.vid === 'На исполнение')
-			} else if (this.scope === 3) {
-				return all.filter(item => item.attributes.vid === 'На согласование')
-			} else if (this.scope === 4) {
-				return all.filter(item => item.attributes.vid === 'На ознакомление')
-			} else if (this.scope === 5) {
-				return all.filter(item => item.attributes.vid === 'Мои согласования')
-			} else if (this.scope === 6) {
-				return all.filter(item => item.attributes.vid === 'Мои подписания')
-			} else if (this.scope === 7) {
-				return all.filter(item => item.attributes.vid === 'Я - контролер')
-			} else if (this.scope === 8) {
-				return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
-			} else return all
-		}
-	},
-
 	methods: {
 		fav (e, i) {
 			e.fav = !e.fav

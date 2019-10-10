@@ -16,16 +16,14 @@
 				v-chip-group( mandatory show-arrows active-class="act" v-model="activeTag")
 					v-chip( v-for="tag in tags" :key="tag.title" pill )
 						| {{ tag.title }}
-						v-avatar(right).num 2
+						v-avatar(right).num {{activeTag}}
 	v-expansion-panels(v-model="panel" multiple)
 		v-expansion-panel(v-for="(item,i) in datelist" :key="i").trans
 			v-expansion-panel-header {{ item }}
 			v-expansion-panel-content
-				LentaList(ref="lentaList" :scope="activeTag" :onlyNew="onlyNew")
+				LentaList(ref="lentaList" :items="filteredItems")
+				//- LentaList(ref="lentaList" :scope="activeTag" :onlyNew="onlyNew")
 	.space
-	//- router-link(to="/").logo
-	//- 	span.font-weight-bold .dv
-	//- 	span( class="font-weight-light" ) 2020
 
 </template>
 
@@ -58,13 +56,42 @@ export default {
 			]
 		}
 	},
+	computed: {
+		allitems () {
+			return this.$store.getters.notifications
+		},
+		newItems () {
+			if (this.onlyNew) {
+				return this.allitems.filter(item => item.unread)
+			} else return this.allitems
+		},
+		filteredItems () {
+			let all = this.newItems
+			switch (this.activeTag) {
+			case 0:
+				return all.filter(item => item.fav)
+			case 2:
+				return all.filter(item => item.attributes.vid === 'На исполнение')
+			case 3:
+				return all.filter(item => item.attributes.vid === 'На согласование')
+			case 4:
+				return all.filter(item => item.attributes.vid === 'На ознакомление')
+			case 5:
+				return all.filter(item => item.attributes.vid === 'Мои согласования')
+			case 6:
+				return all.filter(item => item.attributes.vid === 'Мои подписания')
+			case 7:
+				return all.filter(item => item.attributes.vid === 'Я - контролер')
+			case 8:
+				return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
+			default:
+				return all
+			}
+		}
+	},
 	methods: {
 		toggle () {
 			this.onlyNew = !this.onlyNew
-		},
-		readAll () {
-			// console.log(this.$refs.lentaList.clearUnread())
-			// this.$refs.lentaList.clearUnread
 		}
 	},
 	components: {
@@ -80,7 +107,7 @@ export default {
 <style scoped lang="scss">
 .lenta {
 	padding: .5rem 1rem;
-	max-width: 480px;
+	/* max-width: 480px; */
 	margin: 0 auto;
 }
 .logo {
