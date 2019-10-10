@@ -47,7 +47,7 @@ import { Flipper, Flipped } from 'vue-flip-toolkit'
 import ActionBt from '@/components/ActionBt'
 import AttributeTable from '@/components/AttributeTable'
 import Files from '@/components/Files'
-import data from '@/components/notifications.js'
+// import data from '@/components/notifications.js'
 
 export default {
 	props: ['scope', 'onlyNew'],
@@ -60,11 +60,14 @@ export default {
 	},
 	data () {
 		return {
-			allitems: data,
+			// allitems: data,
 			focused: null
 		}
 	},
 	computed: {
+		allitems () {
+			return this.$store.getters.notifications
+		},
 		items () {
 			let all = this.allitems
 			if (this.onlyNew) {

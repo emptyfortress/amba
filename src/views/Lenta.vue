@@ -69,6 +69,9 @@ export default {
 	},
 	components: {
 		LentaList
+	},
+	created () {
+		this.$store.dispatch('loadNotifications')
 	}
 }
 

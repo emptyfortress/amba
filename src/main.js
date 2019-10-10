@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// import { rtdbPlugin } from 'vuefire'
 import vuetify from './plugins/vuetify'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 Vue.use(SvgTransition)
 Vue.use(KsVueFullpage)
 Vue.use(ScrollView)
+// Vue.use(rtdbPlugin)
 
 var filter = function (text, length, clamp) {
 	clamp = clamp || '...'
