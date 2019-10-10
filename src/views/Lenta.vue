@@ -4,7 +4,7 @@
 		span(@click="toggle").all Все
 		v-switch(v-model="onlyNew" flat label="Новые" color="primary").mx-3
 		v-spacer
-		v-btn(icon @click="readAll")
+		v-btn(icon @click="")
 			v-icon mdi-email-open-multiple-outline
 		v-btn(icon)
 			i.icon-adjust
@@ -14,15 +14,14 @@
 		v-col.pa-0
 			v-sheet.trans
 				v-chip-group( mandatory show-arrows active-class="act" v-model="activeTag")
-					v-chip( v-for="tag in tags" :key="tag.title" pill )
+					v-chip( v-for="(tag, index) in tags" :key="tag.title" pill )
 						| {{ tag.title }}
-						v-avatar(right).num {{activeTag}}
+						v-avatar(right v-text="count(index)" v-if="count(index) > 0").num
 	v-expansion-panels(v-model="panel" multiple)
 		v-expansion-panel(v-for="(item,i) in datelist" :key="i").trans
 			v-expansion-panel-header {{ item }}
 			v-expansion-panel-content
 				LentaList(ref="lentaList" :items="filteredItems")
-				//- LentaList(ref="lentaList" :scope="activeTag" :onlyNew="onlyNew")
 	.space
 
 </template>
@@ -88,8 +87,31 @@ export default {
 				return all
 			}
 		}
+
 	},
 	methods: {
+		count (e) {
+			switch (e) {
+			case 0:
+				return this.$store.getters.notifications.filter(item => item.fav && item.unread).length
+			case 1:
+				return this.$store.getters.notifications.filter(item => item.unread).length
+			case 2:
+				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'На исполнение' && item.unread).length
+			case 3:
+				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'На согласование' && item.unread).length
+			case 4:
+				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'На ознакомление' && item.unread).length
+			case 5:
+				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Мои согласования' && item.unread).length
+			case 6:
+				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Мои подписания' && item.unread).length
+			case 7:
+				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Я - контролер' && item.unread).length
+			case 8:
+				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Согласование. Возврат' && item.unread).length
+			}
+		},
 		toggle () {
 			this.onlyNew = !this.onlyNew
 		}
