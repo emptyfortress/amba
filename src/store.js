@@ -12,15 +12,23 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		setNotifications (state, payload) { state.notifications = payload },
-		setLoading (state, payload) { state.loading = payload }
+		setLoading (state, payload) { state.loading = payload },
+		readAll () {
+			this.state.notifications.map(function (item) {
+				item.unread = false
+			})
+		}
 	},
 	getters: {
 		notifications (state) { return state.notifications }
 	},
 	actions: {
 		loadNotifications ({ commit }) {
-			commit('setLoading', true)
+			commit('readAl', true)
 			commit('setNotifications', data)
+		},
+		readAll ({ commit }) {
+			commit('readAll')
 		}
 	}
 })

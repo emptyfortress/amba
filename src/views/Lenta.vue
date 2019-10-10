@@ -4,7 +4,7 @@
 		span(@click="toggle").all Все
 		v-switch(v-model="onlyNew" flat label="Новые" color="primary").mx-3
 		v-spacer
-		v-btn(icon @click="")
+		v-btn(icon @click="readAll")
 			v-icon mdi-email-open-multiple-outline
 		v-btn(icon)
 			i.icon-adjust
@@ -14,7 +14,7 @@
 		v-col.pa-0
 			v-sheet.trans
 				v-chip-group( mandatory show-arrows active-class="act" v-model="activeTag")
-					v-chip( v-for="(tag, index) in tags" :key="tag.title" pill )
+					v-chip( v-for="(tag, index) in tags" :key="tag.title" )
 						| {{ tag.title }}
 						v-avatar(right v-text="count(index)" v-if="count(index) > 0").num
 	v-expansion-panels(v-model="panel" multiple)
@@ -114,6 +114,10 @@ export default {
 		},
 		toggle () {
 			this.onlyNew = !this.onlyNew
+		},
+		readAll () {
+			this.$store.dispatch('readAll')
+			// this.allitems.map(item => { return { unread: false } })
 		}
 	},
 	components: {
