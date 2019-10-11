@@ -41,7 +41,7 @@
 									div.sub {{ item.subtitle }}
 									Files(:data="item")
 									AttributeTable(:data="item")
-									ActionBt(:list="item.actions" visible="3")
+									ActionBt(:list="item.actions" visible="3" @read="toggleNew(item)")
 </template>
 
 <script>

@@ -1,5 +1,6 @@
 <template lang="pug">
 .action
+	v-btn(text small color="primary" @click.stop="read") Прочитано
 	v-btn(text small color="primary" v-for="(item, index) in list" :key="index" v-if="index < visible" @click.stop="") {{ item }}
 	v-menu( transition="slide-x-transition" bottom right )
 		template( v-slot:activator="{ on }" )
@@ -18,6 +19,11 @@ export default {
 	data () {
 		return {
 		}
+	},
+	methods: {
+		read () {
+			this.$emit('read')
+		}
 	}
 }
 
@@ -30,6 +36,6 @@ export default {
 	margin-top: 1rem;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 }
 </style>
