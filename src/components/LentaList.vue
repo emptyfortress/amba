@@ -8,31 +8,27 @@
 						Flipped(:inverseFlipId="`item-${index}`")
 							.mycontent
 								Flipped(:flipId="`avatar-${index}`")
-									.tr
+									div
 										span.av {{ item.av }}
-										.control
-											span(v-if="item.controller") K
-										.date
+										span(v-if="item.controller").control Kонтроль
+										span(:class="item.overdue ? 'active' : ''").date
 											i(v-if="item.deadline").icon-deadline
-											span {{ item.deadline }}
-										//- span.control(v-if="item.controller") k
-										//- v-icon(v-if="item.deadline").mr-1 mdi-calendar
-										//- span.av {{ item.av }}
 								Flipped(:flipId="`title-${index}`")
-									.zag.ml-4 {{ item.title | truncate(textWidth, '...') }}
-						.new(@click.stop="toggleNew(item)")
+									.zag.ml-1 {{ item.title | truncate(textWidth, '...') }}
+						.new(@click.stop="toggleNew(item)" :class="item.overdue ? 'active' : ''")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
 						Flipped(:inverseFlipId="`item-${index}`" )
 							.expandedcontent
-								.new(@click.stop="toggleNew(item)")
+								.new(@click.stop="toggleNew(item)" :class="item.overdue ? 'active' : ''")
 								Flipped(:flipId="`avatar-${index}`" )
-									.tr
+									div
 										span.av {{ item.avatar }}
-										v-icon(v-if="item.deadline").opac mdi-calendar
-										span {{ item.deadline }}
-										i(v-if="item.controller").icon-control.ml-3.opac
-										span {{ item.controller}}
+										span(v-if="item.controller").control Kонтролер: {{ item.controller }}
+										span(v-if="item.deadline" :class="item.overdue ? 'active' : ''").date
+											i.icon-deadline
+											span.ml-1 Срок: {{ item.deadline }}
+											span.ml-2 (просрочено: {{ item.overdueDays}} дня)
 								Flipped(:flipId="`title-${index}`" )
 									.zag {{ item.title }}
 								.additional
@@ -145,9 +141,6 @@ ul {
 	}
 }
 
-.zag {
-	/* color: #999; */
-}
 .my {
 	width: 100%;
 	background: #ffffff;
@@ -160,40 +153,35 @@ ul {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		.tr {
-			display: flex;
-			align-items: center;
-			div {
-				margin: 0 .5rem;
+		div {
+			/* white-space: nowrap; */
+		}
+		.control {
+			margin: 0 .5rem;
+			display: inline-block;
+			padding: 0 .5rem;
+			height: 21px;
+			line-height: 21px;
+			/* background: #880E4F; */
+			background: #FF9800;
+			text-align: center;
+			color: white;
+			font-size: .7rem;
+			border-radius: 4px;
+		}
+		.date {
+			&.active {
+				color: red;
 			}
-			.control {
-				width: 21px;
-				height: 21px;
-				line-height: 21px;
-				span {
-					display: inline-block;
-					background: #880E4F;
-					width: 100%;
-					text-align: center;
-					color: white;
-					font-weight: bold;
-					font-size: .7rem;
-					border-radius: 4px;
-				}
+			i {
+				margin-right: .3rem;
 			}
-			.date {
-				width: 21px;
-				height: 21px;
-				line-height: 21px;
-				width: 90px;
-				text-align: center;
-				/* background: #ccc; */
-				span {
-
-					/* background: yellow; */
-
-				}
-			}
+			margin: 0 .5rem;
+			width: 21px;
+			height: 21px;
+			line-height: 21px;
+			width: 90px;
+			text-align: center;
 		}
 		.av {
 			display: inline-block;
@@ -225,6 +213,21 @@ ul {
 			margin-right: 1rem;
 			font-size: .8rem;
 		}
+		.control {
+			margin: 0 .5rem;
+			display: inline-block;
+			padding: 0 .5rem;
+			height: 21px;
+			line-height: 21px;
+			background: #FF9800;
+			text-align: center;
+			color: white;
+			font-size: .8rem;
+			border-radius: 4px;
+		}
+		.date.active {
+			color: red;
+		}
 		.zag {
 			font-size: 1.1rem;
 			margin-top: 1.5rem;
@@ -250,8 +253,8 @@ ul {
 		position: absolute;
 		top: 0;
 		left: 0;
-		border-radius: .3rem 0 0 .3rem;
-		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGElEQVQYV2NctmzZ/8jISAZGEGBAAigcAI4pBAQE47ttAAAAAElFTkSuQmCC) repeat;
+		/* border-radius: .3rem 0 0 .3rem; */
+		/* background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGElEQVQYV2NctmzZ/8jISAZGEGBAAigcAI4pBAQE47ttAAAAAElFTkSuQmCC) repeat; */
 	}
 }
 .fav {
@@ -261,10 +264,12 @@ ul {
 }
 .unread .new {
 	background-color: $accent;
+	&.active {
+		background-color: red;
+	}
 }
 .unread .zag {
 	color: black;
-	/* font-weight: 600; */
 }
 .unread .my {
 	opacity: 1;
