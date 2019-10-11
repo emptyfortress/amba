@@ -9,16 +9,16 @@
 		v-btn(icon)
 			i.icon-adjust
 	.search
-		v-text-field(label="Найти")
+		v-text-field(label="Найти" v-model="search")
 	v-row( justify="space-around" )
 		v-col.pa-0
 			v-sheet.trans
 				v-chip-group( mandatory show-arrows active-class="act" v-model="activeTag")
-					v-chip( v-for="(tag, index) in tags" :key="tag.title" )
+					v-chip( v-for="(tag, index) in tags" :key="tag.title" pill)
 						| {{ tag.title }}
 						v-avatar(right v-text="count(index)" v-if="count(index) > 0").num
 	v-expansion-panels(v-model="panel" multiple)
-		v-expansion-panel(v-for="(item,i) in datelist" :key="i").trans
+		v-expansion-panel(v-for="(item,i) in datelist" :key="i" v-if="filteredItems.length").trans
 			v-expansion-panel-header {{ item }}
 			v-expansion-panel-content
 				LentaList(ref="lentaList" :items="filteredItems")
@@ -35,6 +35,7 @@ export default {
 			onlyNew: false,
 			activeTag: 1,
 			markAllRead: false,
+			search: undefined,
 			panel: [0, null, null, null],
 			tags: [
 				{ title: 'Мои подписки' },
@@ -66,6 +67,12 @@ export default {
 		},
 		filteredItems () {
 			let all = this.newItems
+			if (this.search) {
+				let my = this.search.toLowerCase()
+				all = all.filter(item => {
+					return item.title.toLowerCase().indexOf(my) !== -1 || item.subtitle.toLowerCase().indexOf(my) !== -1
+				})
+			}
 			switch (this.activeTag) {
 			case 0:
 				return all.filter(item => item.fav)
@@ -133,7 +140,7 @@ export default {
 <style scoped lang="scss">
 .lenta {
 	padding: .5rem 1rem;
-	/* max-width: 480px; */
+	max-width: 600px;
 	margin: 0 auto;
 }
 .logo {
@@ -171,7 +178,7 @@ export default {
 	color: white !important;
 }
 .num {
-	background: #fff;
+	background: #efefef;
 }
 .v-chip--active .num {
 	/* color: red; */

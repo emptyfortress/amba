@@ -56,7 +56,7 @@ export default {
 	border-top: 2px dotted #ccc;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 	padding: .5rem;
 	td {
 		padding: 0;
