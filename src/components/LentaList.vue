@@ -139,11 +139,15 @@ ul {
 	}
 }
 
+.zag {
+	/* color: #999; */
+}
 .my {
 	width: 100%;
 	background: #ffffff;
 	border-radius: .3rem;
 	position: relative;
+	opacity: .6;
 	.mycontent {
 		padding: .5rem;
 		padding-left: 1rem;
@@ -163,8 +167,6 @@ ul {
 		}
 		.cont {
 			margin-left: 1rem;
-		}
-		.zag {
 		}
 	}
 	.expandedcontent {
@@ -223,7 +225,11 @@ ul {
 	background-color: $accent;
 }
 .unread .zag {
-	font-weight: bold;
+	color: black;
+	/* font-weight: 600; */
+}
+.unread .my {
+	opacity: 1;
 }
 
 .additional {
