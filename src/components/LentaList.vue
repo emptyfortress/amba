@@ -13,7 +13,7 @@
 										v-icon(v-if="item.deadline").mr-1 mdi-calendar
 										i(v-if="item.controller").icon-control
 								Flipped(:flipId="`title-${index}`")
-									.zag.ml-4 {{ item.title | truncate(29, '...') }}
+									.zag.ml-4 {{ item.title | truncate(textWidth, '...') }}
 						.new(@click.stop="toggleNew(item)")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
@@ -59,10 +59,30 @@ export default {
 	},
 	data () {
 		return {
-			focused: null
+			focused: null,
+			window: {
+				width: 0,
+				height: 0
+			}
+		}
+	},
+	created () {
+		window.addEventListener('resize', this.handleResize)
+		this.handleResize()
+	},
+	destroyed () {
+		window.removeEventListener('resize', this.handleResize)
+	},
+	computed: {
+		textWidth () {
+			return Math.floor(this.window.width / 11)
 		}
 	},
 	methods: {
+		handleResize () {
+			this.window.width = window.innerWidth
+			this.window.height = window.innerHeight
+		},
 		fav (e, i) {
 			e.fav = !e.fav
 		},
@@ -206,6 +226,9 @@ ul {
 	font-weight: bold;
 }
 
+.additional {
+	width: 100%;
+}
 .additional > div {
 		opacity: 0;
 }

@@ -140,7 +140,7 @@ export default {
 <style scoped lang="scss">
 .lenta {
 	padding: .5rem 1rem;
-	max-width: 600px;
+	/* max-width: 600px; */
 	margin: 0 auto;
 }
 .logo {
