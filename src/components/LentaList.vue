@@ -8,10 +8,16 @@
 						Flipped(:inverseFlipId="`item-${index}`")
 							.mycontent
 								Flipped(:flipId="`avatar-${index}`")
-									div
+									.tr
 										span.av {{ item.av }}
-										v-icon(v-if="item.deadline").mr-1 mdi-calendar
-										i(v-if="item.controller").icon-control
+										.control
+											span(v-if="item.controller") K
+										.date
+											i(v-if="item.deadline").icon-deadline
+											span {{ item.deadline }}
+										//- span.control(v-if="item.controller") k
+										//- v-icon(v-if="item.deadline").mr-1 mdi-calendar
+										//- span.av {{ item.av }}
 								Flipped(:flipId="`title-${index}`")
 									.zag.ml-4 {{ item.title | truncate(textWidth, '...') }}
 						.new(@click.stop="toggleNew(item)")
@@ -21,7 +27,7 @@
 							.expandedcontent
 								.new(@click.stop="toggleNew(item)")
 								Flipped(:flipId="`avatar-${index}`" )
-									div
+									.tr
 										span.av {{ item.avatar }}
 										v-icon(v-if="item.deadline").opac mdi-calendar
 										span {{ item.deadline }}
@@ -154,19 +160,51 @@ ul {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		.tr {
+			display: flex;
+			align-items: center;
+			div {
+				margin: 0 .5rem;
+			}
+			.control {
+				width: 21px;
+				height: 21px;
+				line-height: 21px;
+				span {
+					display: inline-block;
+					background: #880E4F;
+					width: 100%;
+					text-align: center;
+					color: white;
+					font-weight: bold;
+					font-size: .7rem;
+					border-radius: 4px;
+				}
+			}
+			.date {
+				width: 21px;
+				height: 21px;
+				line-height: 21px;
+				width: 90px;
+				text-align: center;
+				/* background: #ccc; */
+				span {
+
+					/* background: yellow; */
+
+				}
+			}
+		}
 		.av {
 			display: inline-block;
 			width: 28px;
 			height: 28px;
 			border-radius: 14px;
-			margin-right: .5rem;
+			/* margin-right: .5rem; */
 			background: #ccc;
 			text-align: center;
 			line-height: 28px;
 			font-size: .9rem;
-		}
-		.cont {
-			margin-left: 1rem;
 		}
 	}
 	.expandedcontent {
