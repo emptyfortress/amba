@@ -25,8 +25,12 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 								.hd {{ folder.name }}
 							.allbox
 								.grid(v-for="(num,index) in gridList(folder.total, page)" :key="num" )
+									v-window(v-model="step")
+										v-window-item(:value="1")
 									Doc(:item="mypage(num)")
-								.grid.last(v-if="folder.total > 15" @click="handleNext") last
+										v-window-item(:value="2")
+											Doc(:item="mypage(num)")
+								.grid.last(v-if="folder.total > 15" @click="nextp") last
 					.button
 						svg-transition(ref="transition" trigger="click")
 							svg(slot="initial")
@@ -47,6 +51,7 @@ export default {
 	data () {
 		return {
 			focused: null,
+			step: 1,
 			grad: ['red', '#1976d2'],
 			page: 0,
 			list: [
@@ -77,6 +82,9 @@ export default {
 		Doc
 	},
 	methods: {
+		nextp () {
+			this.step = 2
+		},
 		handleNext ({ el, id }) {
 			const squares = document.querySelectorAll('.grid')
 			anime({
