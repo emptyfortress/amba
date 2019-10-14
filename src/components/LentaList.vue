@@ -14,7 +14,7 @@
 										span(:class="item.overdue ? 'active' : ''").date
 											i(v-if="item.deadline").icon-deadline
 								Flipped(:flipId="`title-${index}`")
-									.zag.ml-3 {{ item.title | truncate(textWidth, '...') }}
+									.zag.ml-1 {{ item.title | truncate(textWidth, '...') }}
 						.fav(v-if="item.files.length")
 							i.icon-skrepka
 							|{{ item.files.length }}

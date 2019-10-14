@@ -16,7 +16,7 @@
 		tr
 			td Срок:
 			td {{ item.deadline }}
-	table
+	table.second
 		tr
 			td Подписант:
 			td {{ item.attributes.author }}
@@ -56,7 +56,7 @@ export default {
 	border-top: 2px dotted #ccc;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	/* justify-content: space-around; */
 	padding: .5rem;
 	td {
 		padding: 0;
@@ -67,5 +67,7 @@ export default {
 		padding-right: .5rem;
 	}
 }
-
+.second {
+	margin-left: 3rem;
+}
 </style>

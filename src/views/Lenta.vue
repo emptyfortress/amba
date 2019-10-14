@@ -16,7 +16,7 @@
 				v-chip-group( mandatory show-arrows active-class="act" v-model="activeTag")
 					v-chip( v-for="(tag, index) in tags" :key="tag.title" pill)
 						| {{ tag.title }}
-						v-avatar(right v-text="count(index)" v-if="count(index) > 0").num
+						v-avatar(right v-text="count(index+1)" v-if="count(index +1) > 0").num
 	v-expansion-panels(v-model="panel" multiple)
 		v-expansion-panel(v-for="(item,i) in datelist" :key="i" v-if="filteredItems.length").trans
 			v-expansion-panel-header {{ item }}
@@ -33,12 +33,12 @@ export default {
 	data () {
 		return {
 			onlyNew: false,
-			activeTag: 1,
+			activeTag: 0,
 			markAllRead: false,
 			search: undefined,
 			panel: [0, null, null, null],
 			tags: [
-				{ title: 'Мои подписки' },
+				// { title: 'Мои подписки' },
 				{ title: 'Все' },
 				{ title: 'На исполнение' },
 				{ title: 'На согласование' },
@@ -74,24 +74,40 @@ export default {
 				})
 			}
 			switch (this.activeTag) {
-			case 0:
-				return all.filter(item => item.fav)
-			case 2:
+			case 1:
 				return all.filter(item => item.attributes.vid === 'На исполнение')
-			case 3:
+			case 2:
 				return all.filter(item => item.attributes.vid === 'На согласование')
-			case 4:
+			case 3:
 				return all.filter(item => item.attributes.vid === 'На ознакомление')
-			case 5:
+			case 4:
 				return all.filter(item => item.attributes.vid === 'Мои согласования')
-			case 6:
+			case 5:
 				return all.filter(item => item.attributes.vid === 'Мои подписания')
-			case 7:
+			case 6:
 				return all.filter(item => item.attributes.vid === 'Я - контролер')
-			case 8:
+			case 7:
 				return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
 			default:
 				return all
+			// case 0:
+			// 	return all.filter(item => item.fav)
+			// case 2:
+			// 	return all.filter(item => item.attributes.vid === 'На исполнение')
+			// case 3:
+			// 	return all.filter(item => item.attributes.vid === 'На согласование')
+			// case 4:
+			// 	return all.filter(item => item.attributes.vid === 'На ознакомление')
+			// case 5:
+			// 	return all.filter(item => item.attributes.vid === 'Мои согласования')
+			// case 6:
+			// 	return all.filter(item => item.attributes.vid === 'Мои подписания')
+			// case 7:
+			// 	return all.filter(item => item.attributes.vid === 'Я - контролер')
+			// case 8:
+			// 	return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
+			// default:
+			// 	return all
 			}
 		}
 
