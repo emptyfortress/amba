@@ -24,8 +24,9 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 							Flipped(:flipId="`hd-${index}`")
 								.hd {{ folder.name }}
 							.allbox
-								.grid(v-for="(num,index) in Array(folder.total)" :key="num" )
-									Doc(:item="index")
+								.grid(v-for="(num,index) in gridList(folder.total, page)" :key="num" )
+									Doc(:item="mypage(num)")
+								.grid.last(v-if="folder.total > 15" @click="handleNext") last
 					.button
 						svg-transition(ref="transition" trigger="click")
 							svg(slot="initial")
@@ -47,10 +48,11 @@ export default {
 		return {
 			focused: null,
 			grad: ['red', '#1976d2'],
+			page: 0,
 			list: [
 				 {
 					name: 'Новые',
-					total: 14,
+					total: 16,
 					history: [59, 10, 40, 35, 58, 52]
 				},
 				{
@@ -66,6 +68,8 @@ export default {
 			]
 		}
 	},
+	computed: {
+	},
 	components: {
 		Widget,
 		Flipper,
@@ -73,6 +77,25 @@ export default {
 		Doc
 	},
 	methods: {
+		handleNext ({ el, id }) {
+			const squares = document.querySelectorAll('.grid')
+			anime({
+				targets: squares,
+				opacity: [1, 0],
+				delay: anime.stagger(40, { start: 100 })
+			})
+			// this.page += 1
+		},
+		mypage (e) {
+			return e
+		},
+		gridList (e, page) {
+			if (e > 15 && page === 0) {
+				return 14
+			} else if (e > 15 && page > 0) {
+				return e - 14
+			} else return e
+		},
 		close () {
 			this.focused = null
 		},
@@ -130,7 +153,7 @@ export default {
 		}
 		&.expanded {
 			/* height: calc(100vh - 180px); */
-			width: 50vw;
+			width: 60vw;
 			background: #ffffff44;
 			&:hover {
 				box-shadow: none;

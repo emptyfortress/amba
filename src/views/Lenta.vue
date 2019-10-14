@@ -6,6 +6,13 @@
 		v-spacer
 		v-btn(icon @click="readAll")
 			v-icon mdi-email-open-multiple-outline
+		v-btn(icon @click="test")
+			svg-transition(trigger="click")
+				svg(slot="initial")
+					use(href="#compact")
+				svg
+					use(href="#comfort")
+
 		v-btn(icon)
 			i.icon-adjust
 	.search
@@ -33,6 +40,7 @@ export default {
 	data () {
 		return {
 			onlyNew: false,
+			compact: true,
 			activeTag: 0,
 			markAllRead: false,
 			search: undefined,
@@ -53,7 +61,11 @@ export default {
 				'Вчера, 6 октября, воскресенье',
 				'5 октября, суббота',
 				'4 октября, пятница'
-			]
+			],
+			size: {
+				width: 32,
+				height: 32
+			}
 		}
 	},
 	computed: {
@@ -113,6 +125,9 @@ export default {
 
 	},
 	methods: {
+		test () {
+			// console.log(111)
+		},
 		count (e) {
 			switch (e) {
 			case 0:

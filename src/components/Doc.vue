@@ -4,6 +4,7 @@
 		v-avatar( size="42" ).bg
 			img( v-if="img" :src="source(item)" alt="avatar" )
 			span( v-else ) VJ
+	.h3 {{ item }}
 
 </template>
 

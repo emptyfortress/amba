@@ -14,8 +14,18 @@ div.hid
 	svg(id="star" width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" )
 		path( d="M14 2.60396L16.7797 9.28722L17.0143 9.85118L17.6231 9.89999L24.8383 10.4784L19.3411 15.1873L18.8772 15.5847L19.0189 16.1788L20.6984 23.2196L14.5213 19.4466L14 19.1282L13.4787 19.4466L7.30158 23.2196L8.98105 16.1788L9.12278 15.5847L8.6589 15.1873L3.16172 10.4784L10.3769 9.89999L10.9857 9.85118L11.2203 9.28722L14 2.60396Z" stroke="#d5d5d5" stroke-width="2" )
 
-	svg(id="star1" width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" )
+	svg(id="star1" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" )
 		path( d="M14 2.60396L16.7797 9.28722L17.0143 9.85118L17.6231 9.89999L24.8383 10.4784L19.3411 15.1873L18.8772 15.5847L19.0189 16.1788L20.6984 23.2196L14.5213 19.4466L14 19.1282L13.4787 19.4466L7.30158 23.2196L8.98105 16.1788L9.12278 15.5847L8.6589 15.1873L3.16172 10.4784L10.3769 9.89999L10.9857 9.85118L11.2203 9.28722L14 2.60396Z" fill="#FEC01D" stroke="#D6A218" stroke-width="2" )
+
+	svg(id="compact" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" )
+		line( x1="8" y1="14.5" x2="24" y2="14.5" stroke="#4F4F4F" stroke-width="3" )
+		line( x1="8" y1="18.5" x2="24" y2="18.5" stroke="#4F4F4F" stroke-width="3" )
+		line( x1="8" y1="22.5" x2="18" y2="22.5" stroke="#4F4F4F" stroke-width="3" )
+
+	svg(id="comfort" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" )
+		line( x1="8" y1="15" x2="24" y2="15" stroke="#4F4F4F" stroke-width="6" )
+		line( x1="8" y1="22" x2="24" y2="22" stroke="#4F4F4F" stroke-width="6" )
+
 </template>
 
 <style scoped lang="scss">
