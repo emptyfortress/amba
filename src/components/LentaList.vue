@@ -14,7 +14,11 @@
 										span(:class="item.overdue ? 'active' : ''").date
 											i(v-if="item.deadline").icon-deadline
 								Flipped(:flipId="`title-${index}`")
-									.zag.ml-1 {{ item.title | truncate(textWidth, '...') }}
+									.zag.ml-3 {{ item.title | truncate(textWidth, '...') }}
+						.fav(v-if="item.files.length")
+							i.icon-skrepka
+							|{{ item.files.length }}
+
 						.new(@click.stop="toggleNew(item)" :class="item.overdue ? 'active' : ''")
 				Flipped(v-else :flipId="`item-${index}`" @on-start="handleStart" )
 					.my.expanded
@@ -32,12 +36,12 @@
 								Flipped(:flipId="`title-${index}`" )
 									.zag {{ item.title }}
 								.additional
-									.fav(@click.stop="fav(item, index)")
-										svg-transition(trigger="click")
-											svg(slot="initial")
-												use(:href="item.fav ? '#star1' : '#star'")
-											svg
-												use(:href="!item.fav ? '#star' : '#star1'")
+									//- .fav(@click.stop="fav(item, index)")
+									//- 	svg-transition(trigger="click")
+									//- 		svg(slot="initial")
+									//- 			use(:href="item.fav ? '#star1' : '#star'")
+									//- 		svg
+									//- 			use(:href="!item.fav ? '#star' : '#star1'")
 									div.sub {{ item.subtitle }}
 									Files(:data="item")
 									AttributeTable(:data="item")
@@ -77,7 +81,7 @@ export default {
 	},
 	computed: {
 		textWidth () {
-			return Math.floor(this.window.width / 11)
+			return Math.floor((this.window.width - 55) / 11)
 		}
 	},
 	methods: {
@@ -259,8 +263,8 @@ ul {
 }
 .fav {
 	position: absolute;
-	top: .4rem;
-	right: .1rem;
+	top: .5rem;
+	right: .5rem;
 }
 .unread .new {
 	background-color: $accent;

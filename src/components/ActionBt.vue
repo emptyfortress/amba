@@ -2,6 +2,7 @@
 .action
 	v-btn(text small color="primary" @click.stop="read") Прочитано
 	v-btn(text small color="primary" v-for="(item, index) in list" :key="index" v-if="index < visible" @click.stop="") {{ item }}
+	v-spacer
 	v-menu( transition="slide-x-transition" bottom right )
 		template( v-slot:activator="{ on }" )
 			v-btn(icon small v-on="on" @click.stop="")
