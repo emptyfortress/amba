@@ -23,14 +23,15 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 								v-sparkline(:value="folder.history" auto-draw).chart
 							Flipped(:flipId="`hd-${index}`")
 								.hd {{ folder.name }}
-							.allbox
-								.grid(v-for="(num,index) in gridList(folder.total, page)" :key="num" )
-									v-window(v-model="step")
-										v-window-item(:value="1")
-									Doc(:item="mypage(num)")
-										v-window-item(:value="2")
+							v-window(v-model="step" show-arrows show-arrows-on-hover )
+								v-window-item(:value="1")
+									.allbox
+										.grid(v-for="(num,index) in gridList(folder.total)" :key="num" )
 											Doc(:item="mypage(num)")
-								.grid.last(v-if="folder.total > 15" @click="nextp") last
+								v-window-item(:value="2" v-if="folder.total > 15")
+									.allbox
+										.grid(v-for="(num,index) in secondList(folder.total)" :key="num" )
+											Doc(:item="mypage(num)")
 					.button
 						svg-transition(ref="transition" trigger="click")
 							svg(slot="initial")
@@ -58,16 +59,19 @@ export default {
 				 {
 					name: 'Новые',
 					total: 16,
+					step: 1,
 					history: [59, 10, 40, 35, 58, 52]
 				},
 				{
 					name: 'Приближается срок',
 					total: 7,
+					step: 1,
 					history: [31, 7, 99, 72, 0, 8]
 				},
 				{
 					name: 'Важное',
 					total: 5,
+					step: 1,
 					history: [90, 2, 6, 10, 8, 43]
 				}
 			]
@@ -82,6 +86,9 @@ export default {
 		Doc
 	},
 	methods: {
+		prevp () {
+			this.step = 1
+		},
 		nextp () {
 			this.step = 2
 		},
@@ -92,17 +99,17 @@ export default {
 				opacity: [1, 0],
 				delay: anime.stagger(40, { start: 100 })
 			})
-			// this.page += 1
 		},
 		mypage (e) {
 			return e
 		},
-		gridList (e, page) {
-			if (e > 15 && page === 0) {
-				return 14
-			} else if (e > 15 && page > 0) {
-				return e - 14
+		gridList (e) {
+			if (e > 15) {
+				return 15
 			} else return e
+		},
+		secondList (e) {
+			return e - 15
 		},
 		close () {
 			this.focused = null
@@ -204,5 +211,7 @@ export default {
 	top: -44px;
 	right: 71px;
 }
-
+.big {
+	height: 608px;
+}
 </style>

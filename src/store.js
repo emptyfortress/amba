@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import { db } from './db'
-import data from '@/components/notifications.js'
+import data from '@/data/notifications.js'
 
 Vue.use(Vuex)
 
