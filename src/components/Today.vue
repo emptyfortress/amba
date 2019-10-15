@@ -54,30 +54,13 @@ export default {
 			focused: null,
 			step: 1,
 			grad: ['red', '#1976d2'],
-			page: 0,
-			list: [
-				 {
-					name: 'Новые',
-					total: 16,
-					step: 1,
-					history: [59, 10, 40, 35, 58, 52]
-				},
-				{
-					name: 'Приближается срок',
-					total: 7,
-					step: 1,
-					history: [31, 7, 99, 72, 0, 8]
-				},
-				{
-					name: 'Важное',
-					total: 5,
-					step: 1,
-					history: [90, 2, 6, 10, 8, 43]
-				}
-			]
+			page: 0
 		}
 	},
 	computed: {
+		list () {
+			return this.$store.getters.todayList
+		}
 	},
 	components: {
 		Widget,
@@ -86,23 +69,6 @@ export default {
 		Doc
 	},
 	methods: {
-		prevp () {
-			this.step = 1
-		},
-		nextp () {
-			this.step = 2
-		},
-		handleNext ({ el, id }) {
-			const squares = document.querySelectorAll('.grid')
-			anime({
-				targets: squares,
-				opacity: [1, 0],
-				delay: anime.stagger(40, { start: 100 })
-			})
-		},
-		mypage (e) {
-			return e
-		},
 		gridList (e) {
 			if (e > 15) {
 				return 15
@@ -128,6 +94,9 @@ export default {
 	},
 	directives: {
 		clickOutside: vClickOutside.directive
+	},
+	created () {
+		this.$store.dispatch('loadToday')
 	}
 }
 

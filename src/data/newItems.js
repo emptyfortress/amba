@@ -1,6 +1,6 @@
 export default [
 	name: 'Новые',
-	total: 16,
+	total: 18,
 	page: 1,
 	history: [59, 10, 40, 35, 58, 52],
 	items: [
