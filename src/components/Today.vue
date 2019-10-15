@@ -69,6 +69,9 @@ export default {
 		Doc
 	},
 	methods: {
+		mypage (e) {
+			return e
+		},
 		gridList (e) {
 			if (e > 15) {
 				return 15
@@ -79,6 +82,7 @@ export default {
 		},
 		close () {
 			this.focused = null
+			this.step = 1
 		},
 		toggle (e) {
 			this.focused = e
@@ -97,6 +101,7 @@ export default {
 	},
 	created () {
 		this.$store.dispatch('loadToday')
+		this.$store.dispatch('loadNewItems')
 	}
 }
 
