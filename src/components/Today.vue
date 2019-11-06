@@ -26,12 +26,13 @@ Flipper(:flipKey="focused" spring="stiff").today.flexi
 							v-window(v-model="step" show-arrows show-arrows-on-hover )
 								v-window-item(:value="1")
 									.allbox
-										.grid(v-for="(num,index) in gridList(folder.total)" :key="num" )
-											Doc(:item="mypage(num)")
-								v-window-item(:value="2" v-if="folder.total > 15")
-									.allbox
-										.grid(v-for="(num,index) in secondList(folder.total)" :key="num" )
-											Doc(:item="mypage(num)")
+										.grid(v-for="(item, i) in featured(index)" :key="i" )
+											Doc(:item="i")
+								//- v-window-item(:value="2" v-if="folder.total > 15")
+								//- 	.allbox
+								//- 		.grid(v-for="(num,index) in secondList(folder.total)" :key="num" )
+								//- 			div test
+											//- Doc(:item="mypage(num)")
 					.button
 						svg-transition(ref="transition" trigger="click")
 							svg(slot="initial")
@@ -60,6 +61,9 @@ export default {
 	computed: {
 		list () {
 			return this.$store.getters.todayList
+		},
+		items () {
+			return this.$store.getters.items
 		}
 	},
 	components: {
@@ -69,8 +73,13 @@ export default {
 		Doc
 	},
 	methods: {
-		mypage (e) {
-			return e
+		featured (index) {
+			switch (index) {
+			case 0:
+				return this.items.filter(item => item.unread)
+			case 1:
+				return this.items.filter(item => item.deadline)
+			}
 		},
 		gridList (e) {
 			if (e > 15) {
@@ -101,7 +110,7 @@ export default {
 	},
 	created () {
 		this.$store.dispatch('loadToday')
-		this.$store.dispatch('loadNewItems')
+		this.$store.dispatch('loadItems')
 	}
 }
 
@@ -160,7 +169,7 @@ export default {
 			}
 			.allbox {
 				display: grid;
-				grid-template-columns: repeat(5, 1fr);
+				grid-template-columns: repeat(6, 1fr);
 				grid-auto-rows: 200px;
 				grid-gap: 4px;
 				overflow: hidden;

@@ -155,7 +155,6 @@ export default {
 		},
 		readAll () {
 			this.$store.dispatch('readAll')
-			// this.allitems.map(item => { return { unread: false } })
 		}
 	},
 	components: {

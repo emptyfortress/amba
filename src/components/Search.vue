@@ -1,7 +1,13 @@
 <template lang="pug">
 .search
 	.group
-		v-btn(text color="grey") Команды
+		v-btn(text color="grey" @click="command = !command").mr-5 Команды
+		span(v-if="command") d - Документы
+		span(v-if="command") z - Задания
+		span(v-if="command") a - Атрибуты
+		span(v-if="command") i - Исполнители
+		span(v-if="command") s - Срок
+		span(v-if="command") (с большой буквы - исключение)
 	.rel
 		input-tag(v-model="tags"  placeholder="Что искать?" :add-tag-on-keys="keys" :before-adding="(tag) => norm(tag)").big
 		i.icon-search
@@ -16,6 +22,7 @@ export default {
 	data () {
 		return {
 			search: '',
+			command: false,
 			term: false,
 			tags: [],
 			keys: [188, 9]
@@ -98,6 +105,11 @@ export default {
 /* } */
 .group {
 	padding-top: 1rem;
+	span {
+		margin-right: 2rem;
+		font-size: .9rem;
+		color: #666;
+	}
 }
 .rel {
 	position: relative;

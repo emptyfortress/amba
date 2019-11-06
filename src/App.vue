@@ -7,9 +7,9 @@ v-app
 		router-link(to="/lenta").ma-5 lenta
 	v-app-bar(app bottom clipped-left v-if="$route.path !== '/lenta'").transp
 		v-app-bar-nav-icon(@click="leftDrawer = !leftDrawer")
-		v-toolbar-title.headline
-			span.font-weight-bold .dv
-			span( class="font-weight-light" ) 2020
+		//- v-toolbar-title.headline
+		//- 	span.font-weight-bold .dv
+		//- 	span( class="font-weight-light" ) 2020
 		v-spacer
 		svg-transition(ref="transition" trigger="click")
 			svg(slot="initial")
@@ -18,7 +18,7 @@ v-app
 				use(href="#two")
 		v-spacer
 		v-btn( text to="/lenta" )
-			span( class="mr-2" ) WhitePaper
+			span( class="mr-2" ) Лента
 			v-icon mdi-open-in-new
 	v-content.bg
 		div
