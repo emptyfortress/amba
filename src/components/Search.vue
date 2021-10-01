@@ -8,7 +8,8 @@
 		span(v-if="command") i - Исполнители
 		span(v-if="command") s - Срок
 		span(v-if="command") (с большой буквы - исключение)
-		p(v-if="command") Наберите букву и нажмите Tab
+		p(v-if="command")
+			span Наберите букву и нажмите Tab
 	.rel
 		input-tag(v-model="tags"  placeholder="Что искать?" :add-tag-on-keys="keys" :before-adding="(tag) => norm(tag)").big
 		i.icon-search
