@@ -3,8 +3,25 @@ ksvuefp( :options="options" :sections="sections" )
 	ksvuefp-section( v-for="(s,index) in sections" :section="s" :key="s.id" :section-index="index" :class="s.cl" )
 		Today( v-if="index === 0" )
 		Search(v-if="index === 1")
-		h2( v-if="index === 2" ) {{ s.id }} {{ index }}
-		h2( v-if="index === 3" ) {{ s.id }}
+		.center( v-if="index === 2" )
+			br
+			br
+			br
+			br
+			br
+			h2 id: {{ s.id }} index: {{ index }}
+			.card
+				p Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
+
+		.center( v-if="index === 3" )
+			br
+			br
+			br
+			br
+			br
+			h2 id: {{ s.id }} index: {{ index }}
+			.card
+				p Pellentesque dapibus suscipit ligula.
 
 </template>
 
@@ -45,8 +62,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .ksvuefp-section {
 	display: flex;
+	height: 100%;
+}
+.center {
+	text-align: center;
+	align-self: center;
+	justify-self: center;
+}
+.card {
+	margin: 0 auto;
+	width: 500px;
 }
 </style>

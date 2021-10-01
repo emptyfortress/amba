@@ -1,7 +1,7 @@
 export default [
 	{
 		slug: 'sports',
-		label: 'Sports Icons',
+		label: 'Задания',
 		icons: [
 			{
 				flipped: true,
@@ -48,7 +48,7 @@ export default [
 	},
 	{
 		slug: 'science',
-		label: 'Science Icons',
+		label: 'Документы',
 		icons: [
 			{
 				flipped: false,

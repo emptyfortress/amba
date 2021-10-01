@@ -4,6 +4,7 @@
 		span(@click="toggle").all Все
 		v-switch(v-model="onlyNew" flat label="Новые" color="primary").mx-3
 		v-spacer
+		v-btn(to="/" small).mr-6 home
 		v-btn(icon @click="readAll")
 			v-icon mdi-email-open-multiple-outline
 		v-btn(icon @click="test")
@@ -82,7 +83,10 @@ export default {
 			if (this.search) {
 				let my = this.search.toLowerCase()
 				all = all.filter(item => {
-					return item.title.toLowerCase().indexOf(my) !== -1 || item.subtitle.toLowerCase().indexOf(my) !== -1
+					return (
+						item.title.toLowerCase().indexOf(my) !== -1 ||
+						item.subtitle.toLowerCase().indexOf(my) !== -1
+					)
 				})
 			}
 			switch (this.activeTag) {
@@ -99,30 +103,31 @@ export default {
 			case 6:
 				return all.filter(item => item.attributes.vid === 'Я - контролер')
 			case 7:
-				return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
+				return all.filter(
+					item => item.attributes.vid === 'Согласование. Возврат'
+				)
 			default:
 				return all
-			// case 0:
-			// 	return all.filter(item => item.fav)
-			// case 2:
-			// 	return all.filter(item => item.attributes.vid === 'На исполнение')
-			// case 3:
-			// 	return all.filter(item => item.attributes.vid === 'На согласование')
-			// case 4:
-			// 	return all.filter(item => item.attributes.vid === 'На ознакомление')
-			// case 5:
-			// 	return all.filter(item => item.attributes.vid === 'Мои согласования')
-			// case 6:
-			// 	return all.filter(item => item.attributes.vid === 'Мои подписания')
-			// case 7:
-			// 	return all.filter(item => item.attributes.vid === 'Я - контролер')
-			// case 8:
-			// 	return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
-			// default:
-			// 	return all
+				// case 0:
+				// 	return all.filter(item => item.fav)
+				// case 2:
+				// 	return all.filter(item => item.attributes.vid === 'На исполнение')
+				// case 3:
+				// 	return all.filter(item => item.attributes.vid === 'На согласование')
+				// case 4:
+				// 	return all.filter(item => item.attributes.vid === 'На ознакомление')
+				// case 5:
+				// 	return all.filter(item => item.attributes.vid === 'Мои согласования')
+				// case 6:
+				// 	return all.filter(item => item.attributes.vid === 'Мои подписания')
+				// case 7:
+				// 	return all.filter(item => item.attributes.vid === 'Я - контролер')
+				// case 8:
+				// 	return all.filter(item => item.attributes.vid === 'Согласование. Возврат')
+				// default:
+				// 	return all
 			}
 		}
-
 	},
 	methods: {
 		test () {
@@ -131,23 +136,41 @@ export default {
 		count (e) {
 			switch (e) {
 			case 0:
-				return this.$store.getters.notifications.filter(item => item.fav && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item => item.fav && item.unread
+				).length
 			case 1:
-				return this.$store.getters.notifications.filter(item => item.unread).length
+				return this.$store.getters.notifications.filter(item => item.unread)
+					.length
 			case 2:
-				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'На исполнение' && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item => item.attributes.vid === 'На исполнение' && item.unread
+				).length
 			case 3:
-				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'На согласование' && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item => item.attributes.vid === 'На согласование' && item.unread
+				).length
 			case 4:
-				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'На ознакомление' && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item => item.attributes.vid === 'На ознакомление' && item.unread
+				).length
 			case 5:
-				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Мои согласования' && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item => item.attributes.vid === 'Мои согласования' && item.unread
+				).length
 			case 6:
-				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Мои подписания' && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item => item.attributes.vid === 'Мои подписания' && item.unread
+				).length
 			case 7:
-				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Я - контролер' && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item => item.attributes.vid === 'Я - контролер' && item.unread
+				).length
 			case 8:
-				return this.$store.getters.notifications.filter(item => item.attributes.vid === 'Согласование. Возврат' && item.unread).length
+				return this.$store.getters.notifications.filter(
+					item =>
+						item.attributes.vid === 'Согласование. Возврат' && item.unread
+				).length
 			}
 		},
 		toggle () {
@@ -164,12 +187,11 @@ export default {
 		this.$store.dispatch('loadNotifications')
 	}
 }
-
 </script>
 
 <style scoped lang="scss">
 .lenta {
-	padding: .5rem 1rem;
+	padding: 0.5rem 1rem;
 	/* max-width: 600px; */
 	margin: 0 auto;
 }
@@ -181,20 +203,20 @@ export default {
 	position: fixed;
 	bottom: 1rem;
 	left: 1rem;
-	background: #A3ADB5;
-	padding: 0 .5rem;
+	background: #a3adb5;
+	padding: 0 0.5rem;
 	z-index: 10;
 }
 .switch {
-	font-size: 1.0rem;
+	font-size: 1rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .all {
-	color: rgba(0,0,0,0.54);
+	color: rgba(0, 0, 0, 0.54);
 	cursor: pointer;
-	margin-bottom: .5rem;
+	margin-bottom: 0.5rem;
 }
 .v-text-field {
 	margin-top: 0;
@@ -222,7 +244,7 @@ export default {
 	width: 100%;
 	height: 100px;
 	box-shadow: none;
-	margin-bottom: .5rem;
+	margin-bottom: 0.5rem;
 }
 .rel {
 	position: relative;
@@ -234,7 +256,7 @@ export default {
 	/* background: #333; */
 	/* padding: .3rem; */
 	span {
-		font-size: 1.0rem;
+		font-size: 1rem;
 		color: black;
 	}
 }

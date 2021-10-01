@@ -8,6 +8,7 @@
 		span(v-if="command") i - Исполнители
 		span(v-if="command") s - Срок
 		span(v-if="command") (с большой буквы - исключение)
+		p(v-if="command") Наберите букву и нажмите Tab
 	.rel
 		input-tag(v-model="tags"  placeholder="Что искать?" :add-tag-on-keys="keys" :before-adding="(tag) => norm(tag)").big
 		i.icon-search
@@ -69,7 +70,6 @@ export default {
 		}
 	}
 }
-
 </script>
 
 <style scoped lang="scss">
@@ -80,7 +80,7 @@ export default {
 		position: absolute;
 		top: -4rem;
 		left: -6rem;
-		font-size: 9.0rem;
+		font-size: 9rem;
 		color: #eeeeeeaa;
 		z-index: -2;
 	}
@@ -89,7 +89,7 @@ export default {
 .big {
 	height: 48px;
 	width: 100%;
-	font-size: 3.0rem;
+	font-size: 3rem;
 	background: transparent;
 	outline: none;
 	border: none !important;
@@ -107,7 +107,7 @@ export default {
 	padding-top: 1rem;
 	span {
 		margin-right: 2rem;
-		font-size: .9rem;
+		font-size: 0.9rem;
 		color: #666;
 	}
 }
