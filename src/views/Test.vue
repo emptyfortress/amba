@@ -15,7 +15,7 @@ div
 </template>
 
 <script>
-import Flipped from 'vue-flip-toolkit/src/Flipped'
+import Flipped from 'vue-flip-toolkit'
 import iconData from './icon-data'
 
 export default {
