@@ -32,11 +32,11 @@ v-app
 </template>
 
 <script>
-import Flipper from "vue-flip-toolkit";
-import icons from "@/components/svg.vue";
+import { Flipper } from 'vue-flip-toolkit'
+import icons from '@/components/svg.vue'
 
 export default {
-	name: "App",
+	name: 'App',
 	data: () => ({
 		leftDrawer: false
 	}),
@@ -45,11 +45,11 @@ export default {
 		icons
 	},
 	computed: {
-		key() {
-			return this.$route.path;
+		key () {
+			return this.$route.path
 		}
 	}
-};
+}
 </script>
 
 <style scoped lang="scss">

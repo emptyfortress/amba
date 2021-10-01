@@ -20,7 +20,7 @@ Flipped( :flipId="flipId" @on-complete="handleComplete" )
 </template>
 
 <script>
-import Flipped from 'vue-flip-toolkit'
+import { Flipped } from 'vue-flip-toolkit'
 import anime from 'animejs'
 import iconData from '@/views/icon-data'
 
